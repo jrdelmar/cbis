@@ -1,0 +1,19 @@
+.dataTables_length {
+    width:50%
+}
+.dataTables_filter {
+    width:50%
+}
+
+.img-container-scrollable {
+    max-height: 650px;
+    overflow-y: scroll;
+}
+
+.item:hover{
+    background-color: #f8f8f8;
+}
+
+.item .img-active{
+    border:3px solid #ee5f5b;
+}

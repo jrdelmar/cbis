@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Content-based Image Search">
+  <meta name="author" content="jrdelmar">
+
+  <title>Content-based Image Search</title>
+  <!-- Theme URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/  -->
+  <!-- =======================================================
+    Theme Name: Eterna
+    Theme URL: https://bootstrapmade.com/eterna-free-multipurpose-bootstrap-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+  
+  <!-- stylesheets -->
+  <link href="{{ url_for('static', filename='css/fonts-css.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bootstrap-responsive.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='datatables/jquery.dataTables.min.css') }}" rel="stylesheet">
+
+  <!-- Theme skin -->
+  <link href="{{ url_for('static', filename='color/default.css') }}" rel="stylesheet">
+
+  <!-- Fav and touch icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
+  <link rel="shortcut icon" href="static/ico/favicon.png" />
+
+  <!--joanna edited-->
+  <link href="{{ url_for('static', filename='css/bubble_chart.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" media="screen">
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+    <!-- start header -->
+    <header>
+      <div class="top">
+        <div class="container">
+          <div class="row">
+            <div class="span8">
+              <!--<p class="topcontact"><i class="icon-beaker"></i> Powered by Flask|InceptionV3|Keras|Tensorflow|Python3</p>-->
+            </div>
+            <div class="span4">
+
+              <ul class="social-network">
+                <li><p class="topcontact align-left floatright">Powered by </p></li>
+                <li><a target="_blank" href="http://flask.pocoo.org/" data-placement="bottom" title="Flask">
+                      <i class="icon-beaker icon-white"></i></a></li>
+                <li><a target="_blank" href="https://d3js.org/" data-placement="bottom" title="Bootstrap">
+                  <i class="icon-star icon-white"></i></a></li>
+                <li><a target="_blank" href="https://scitools.org.uk/cartopy/docs/latest/" data-placement="bottom" title="Cartopy">
+                      <i class="icon-map-marker icon-white"></i></a></li>
+                <li><a target="_blank" href="https://d3js.org/" data-placement="bottom" title="D3.js">
+                  <i class="icon-eye-open icon-white"></i></a></li>
+                <li><a target="_blank" href="https://arxiv.org/abs/1512.00567" data-placement="bottom" title="InceptionV3">
+                  <i class="icon-lightbulb icon-white"></i></a></li>
+                <li><a target="_blank" href="https://keras.io/" data-placement="bottom" title="Keras">
+                      <i class="icon-code icon-white"></i></a></li>
+                <li><a target="_blank" href="https://www.tensorflow.org/about/" data-placement="bottom" title="Tensorflow">
+                      <i class="icon-rocket icon-white"></i></a></li>
+                <li><a target="_blank" href="https://www.python.org/" data-placement="bottom" title="Python3">
+                      <i class=" icon-terminal icon-white"></i></a></li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row nomargin">
+          <div class="span4">
+            <div class="logo">
+              <!--<a href="index.html"><img src="static/images/logo.png" alt="" /></a>-->
+              <h4><strong><span class="colored">Content-based</span> Image Search</strong></h4>
+            </div>
+          </div>
+          <div class="span8">
+            <div class="navbar navbar-static-top">
+              <div class="navigation">
+                <nav>
+                  <ul class="nav topnav">
+                    <li class=" ">
+                      <a href="/"><i class="icon-search"></i> Search </a>
+                    </li>
+                    <li class=" ">
+                      <a href="/report"><i class="icon-eye-open"></i> Visualise </a>
+                    </li>
+                    <li class=" ">
+                      <a target="_blank" href="/howtouse"><i class="icon-question-sign"></i> Help </a>
+                    </li>
+                    
+                  </ul>
+                </nav>
+              </div>
+              <!-- end navigation -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- end header -->
+
+
+    <!-- Page Content -->
+    <!-- <div class="container center-container">-->
+
+      <!-- messages -->
+      {% for message in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          {{ message }}
+        </div>
+      {% endfor %}
+
+      <!-- child template -->
+      {% block content %}{% endblock %}
+
+      <!-- errors -->
+      {% if error %}
+      <p class="error"><strong>Error:</strong> {{ error }}</p>
+      {% endif %}
+
+
+   <!-- </div>-->
+    <!-- /.container -->
+
+<footer>
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <div class="widget">
+              <p>
+                <i class="icon-info-sign"></i> <a target="_blank" href="/howtouse">Installation</a> <br>
+                <i class="icon-terminal"></i> <a target="_blank" href="/howtouse#The-Application-(Console)">Console Usage</a> <br>
+                 <i class="icon-github"></i> <a target="_blank" href="#">Github Source</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="span6">
+            <div class="credits">
+            <div class="widget">
+              <p>
+                <i class="icon-phone"></i> (123) 456-7890 <br>
+                <i class="icon-envelope-alt"></i> email@domainname.com<br>
+              </p>
+            </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div id="sub-footer">
+        <div class="container">
+          <div class="row">
+            <div class="span6">
+              <div class="copyright">
+                <p><span>&copy; Eterna company. All right reserved</span></p>
+              </div>
+
+            </div>
+
+            <div class="span6">
+              <div class="credits">
+                <!--
+                  All the links in the footer should remain intact.
+                  You can delete the links only if you purchased the pro version.
+                  Licensing information: https://bootstrapmade.com/license/
+                  Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Eterna
+                -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <a href="#" class="scrollup"><i class="icon-angle-up icon-square icon-bglight icon-2x active"></i></a>
+
+
+    <!-- javascript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/modernizr.custom.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/portfolio/jquery.quicksand.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/portfolio/setting.js') }}" type="text/javascript"></script>
+
+    <!-- dataTables -->
+    <script src="{{ url_for('static', filename='datatables/datatables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='datatables/Buttons-1.5.4/js/dataTables.buttons.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='datatables/Buttons-1.5.4/js/buttons.print.js') }}" type="text/javascript"></script>
+
+  <!-- Template Custom JavaScript File -->
+  <script src="{{ url_for('static', filename='js/custom.js') }}" type="text/javascript"></script>
+
+    <!-- testing new version -->
+   <script src="{{ url_for('static', filename='js/d3.v4.min.js') }}" type="text/javascript"></script>
+   <script src="{{ url_for('static', filename='js/bubble-chart/tooltip.js') }}" type="text/javascript"></script>
+   <script src="{{ url_for('static', filename='js/bubble-chart/bubble_chart.js') }}" type="text/javascript"></script>
+   <script src="{{ url_for('static', filename='js/report.js') }}" type="text/javascript"></script>
+  </body>
+
+  </html>

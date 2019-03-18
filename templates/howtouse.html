@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Content-based Image Search">
+    <meta name="author" content="jrdelmar">
+
+    <title>How to Use</title>
+    <link href="../static/css/fonts-css.css" rel="stylesheet">
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+body {
+  overflow: visible;
+  padding: 8px;
+}
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
+}@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+}
+</style>
+</head>
+<body>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<a href="/" >Back</a>
+<!-- HEADER -->
+<hr style="border-top: 3px solid #1a082a;margin:0em" />
+<div style="width:100%;background-color:#;">
+<div style="display:table;width:100%">
+    <img src="../static/img/logo.png" style="margin:10px;float:left" /> 
+    <span style="text-align:center;display:table-cell;vertical-align:top">
+        <h3 style="color:#a03377">Content-Based Image Search</h3>
+        <h4 style="color:#a03377">Using Pre-trained Models in Machine Learning as a Digital Forensic Tool</h4>
+        <h8 style="color:#e54d86">InceptionV3 | ImageNet | Tensorflow | Keras | Python3</h8>
+    </span>
+</div></div>
+<hr style="border-top: 3px solid #1a082a;margin:0em" />
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br />
+
+<h1 id="Installation-Notes">Installation Notes<a class="anchor-link" href="#Installation-Notes"></a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pre-requisites">Pre-requisites<a class="anchor-link" href="#Pre-requisites"></a></h2><ul>
+    <li><a target="_blank" href="https://www.anaconda.com/distribution/#linux">Anaconda</a></li>
+    <li><a target="_blank" href="https://pip.pypa.io/en/stable/">pip</a></li>
+    <li><a target="_blank" href="https://www.python.org/downloads/">python 3</a></li>
+    <li><a target="_blank" href="https://virtualenv.pypa.io/en/latest/">virtual environment</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Anaconda">Anaconda<a class="anchor-link" href="#Anaconda"></a></h3><p>Anaconda is a package management and deployment environment. For this project, cartopy is required to provide offline maps. Installation via Anaconda is by far the simplest. Installing the Anaconda navigator also installs Jupyter from which this notebook is run.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="PIP">PIP<a class="anchor-link" href="#PIP"></a></h3><p>Pip is a tool for installing python packages from the python package index. This project uses pip to install dependencies. Follow the documentation for pip installation on your own machine.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Python-3">Python 3<a class="anchor-link" href="#Python-3"></a></h3><p>This project uses python 3.X, developed under 3.6.X. Install Python 3 in your development by following the official documentation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Virtual-environment">Virtual environment</h3><p>virtualenv is a module used by the python community to isolate python environments. This is beneficial for a variety of reasons:</p>
+<ul>
+<li>allows installation of packages without affecting the global/system site-packages</li>
+<li>allows downgrade/upgrade of packages and modules to evaluate the application</li>
+</ul>
+<p>Completely (hopefully) isolating python environments allows us to create a complete copy of our Python program that works with the dependencies installed.</p>
+<p>Reference: <a href="https://virtualenv.pypa.io/en/latest/">https://virtualenv.pypa.io/en/latest/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Install-with-Ubuntu-18.04.1-LTS-Fresh-(VirtualBox)">Install with Ubuntu 18.04.1 LTS Fresh (VirtualBox)<a class="anchor-link" href="#Install-with-Ubuntu-18.04.1-LTS-Fresh-(VirtualBox)"></a></h2><p>Reference: <a href="https://linoxide.com/linux-how-to/setup-python-virtual-environment-ubuntu/">https://linoxide.com/linux-how-to/setup-python-virtual-environment-ubuntu/</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Make sure system is updated
+<code>sudo apt-get update</code></p>
+<p>Install PIP because Ubuntu is already shipped with Python 3.6</p>
+<p><code>sudo apt install python-pip</code></p>
+<p><code>sudo apt-get install python3-pip</code></p>
+<p>Build essentials/developer tools <code>sudo apt-get install build-essential libssl-dev libffi-dev python-dev</code></p>
+<p>To solve issues with wheel: <code>sudo -H pip3 install setuptools --upgrade</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Install virtualenvironment</p>
+<p><code>sudo apt-get install -y python3-venv</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create virtualenvironment</p>
+<p><code>python3 -m venv cbis</code></p>
+<p>Activate virtual environment (directory /home/joanna/venv)</p>
+
+<pre><code>cbis@cbis_ubuntu:/venv$ source ~/venv/cbis/bin/activate
+(cbis) cbis@cbis_ubuntu:/venv$ which python3
+/venv/cbis/bin/python3
+(cbis) cbis@cbis_ubuntu:/venv$</code></pre>
+<p>To deactivate:
+<code>deactivate</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Load-the-Requirements-File">Load the Requirements File<a class="anchor-link" href="#Load-the-Requirements-File"></a></h2><p>To solve issues with wheel:  <code>pip3 install wheel</code></p>
+<p>Install pre-requisites using the requirements text file:
+<code>pip3 install -r requirements.venv.txt</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Installation issues:</p>
+<ul>
+<li>Tensorflow
+<pre><code>Collecting tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))
+Could not find a version that satisfies the requirement tensorflow==1.12.0 (from -r requirements.venv.txt (line 14)) (from versions: 1.13.0rc1, 1.13.0rc2, 1.13.1, 2.0.0a0)
+No matching distribution found for tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))</code></pre>
+</li>
+</ul>
+<p>Install manually:
+<code>pip install --upgrade tensorflow</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Cartopy-Installation-via-Anaconda">Cartopy Installation via Anaconda<a class="anchor-link" href="#Cartopy-Installation-via-Anaconda"></a></h3>
+    <p>Cartopy is painful to install on linux servers, so I used anaconda to install cartopy.</p>
+    <pre><code>root@joanna:/home/app/cbis# python app.py
+Traceback (most recent call last):
+  File "app.py", line 16, in &lt;module&gt;
+    from pyimagesearch.map import create_map
+  File "/home/app/cbis/pyimagesearch/map.py", line 8, in &lt;module&gt;
+    import cartopy.crs as ccrs
+ModuleNotFoundError: No module named 'cartopy'</code></pre>
+
+<p>This module is only necessary for the web application for the offline map display of the coordinates.
+    You do not need to install this if you just need to run the console.</p>
+
+<p>To install, choose the correct architecture (use Anaconda3 for Python3) and download the anaconda installation from the repository:
+    <a href="https://repo.anaconda.com/archive">https://repo.anaconda.com/archive/</a></p>
+<pre><code>
+    $ wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
+    --2019-03-18 12:01:27--  https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
+    Resolving repo.anaconda.com (repo.anaconda.com)... 104.16.130.3, 104.16.131.3, 2606:4700::6810:8203, ...
+    Connecting to repo.anaconda.com (repo.anaconda.com)|104.16.130.3|:443... connected.
+    HTTP request sent, awaiting response... 200 OK
+    Length: 658699654 (628M) [application/x-sh]
+    Saving to: ‘Anaconda2-2018.12-Linux-x86_64.sh’
+
+    Anaconda2-2018.12-Linux-x86_64.sh     100%[========================================================================>] 628,18M  2,27MB/s    in 5m 0s
+
+    2019-03-18 12:06:28 (2,10 MB/s) - ‘Anaconda3-2018.12-Linux-x86_64.sh’ saved [658699654/658699654]
+</code></pre>
+
+    <p>Compare the installation to ensure integrity of the file. Check the md5 hash against the published hash from the repository.</p>
+    <pre><code>
+    $ md5sum Anaconda3-2018.12-Linux-x86_64.sh
+    c9af603d89656bc89680889ef1f92623  Anaconda3-2018.12-Linux-x86_64.sh
+    </code></pre>
+
+    <p>Run the bash file to proceed with the installation package.</p>
+    <pre><code>
+    bash Anaconda3-2018.12-Linux-x86_64.sh
+
+    Welcome to Anaconda3 2018.12
+
+    In order to continue the installation process, please review the license
+    agreement.
+    Please, press ENTER to continue
+    >>>
+    </code></pre>
+
+    <p>When the installation completes, add the installation to the PATH file.
+        Type <code>yes</code> so we can use the <code>conda</code> command.</p>
+    <pre><code>
+
+    </code></pre>
+
+
+<ul>
+<li><a href="https://scitools.org.uk/cartopy/docs/latest/installing.html">Cartopy</a>
+<pre><code>conda install -c conda-forge cartopy</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Test-Run-the-Code">Test Run the Code<a class="anchor-link" href="#Test-Run-the-Code"></a></h2><p>Test with running the python code: (no trailing <code>/</code> for the paths)</p>
+
+<pre><code>python3 predict.py --image /mnt/d/dataset/PHOTO-DB1/images -v</code></pre>
+<p>Results:</p>
+
+<pre><code>(cbis) cbis@cbis_ubuntu:~/venv$ python3 predict.py --image /mnt/d/dataset/PHOTO-DB1/images -v
+Using TensorFlow backend.
+[INFO] Starting to load and index the path /mnt/d/dataset/PHOTO-DB1/images ...
+[INFO] inception model used.
+[INFO] Weight models/inception_v3_weights_tf_dim_ordering_tf_kernels.h5 used
+[INFO] Analyzing directory /mnt/d/dataset/PHOTO-DB1/images...
+[INFO] Number of files found for analysis: 4
+[INFO] Model and weights loaded...
+[INFO] Classifying image 2.jpg
+1. tile_roof: 93.25%
+2. monastery: 1.71%
+3. dome: 1.38%
+4. church: 0.36%
+...
+17. book_jacket: 0.10%
+18. hammer: 0.09%
+19. joystick: 0.09%
+20. shovel: 0.09%
+[INFO] Extract exif information for /mnt/d/dataset/PHOTO-DB1/images/guns2.jpg..
+[INFO] File created/saved: output/predictions_20190223_001859.csv
+[INFO] File created/saved: output/exif_20190223_001859.csv
+(cbis) cbis@cbis_ubuntu:~/venv$</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To freeze pip installations: 
+<code>pip freeze &gt; requirements.cbis.ubuntu.txt</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="The-Application-(Console)">The Application (Console)<a class="anchor-link" href="#The-Application-(Console)"></a></h1><p>The application needed for the console is structured this way:</p>
+
+<pre><code>root
+ |---cbis/
+       |---models/        
+               |--- contains the model weights pre-trained in imagenet         
+       |---pyimagesearch/ 
+               |--- contains the classes
+       |---output/       
+               |--- contains the output files 
+       |---predict.py
+       |---search.py       
+       |---report.py  
+       |---requirements.venv.txt # pip installation requirements</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Running-the-console-application">Running the console application<a class="anchor-link" href="#Running-the-console-application"></a></h1><h2 id="*-Using-the-console/terminal">(1) Using the console/terminal<a class="anchor-link" href="#*-Using-the-console/terminal"></a></h2><p>This section discusses how to run the python script in the command line</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-1)-Load-and-Predict">Step 1.1 Load and Predict<a class="anchor-link" href="#Step-1)-Load-and-Predict"></a></h3>
+    <p>This module traverses the directory of images, loads the pretrained machine learning model and predicts the top-20 labels as an output. The output is stored as a csv file under the /output directory</p>
+    <p>Move the images to the <strong>dataset/</strong> directory if you wish to display the images from the web application.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>predict.py
+Parameters:</p>
+<ul>
+<li><code>-i [Location of Image Path]</code> <em>required, location of images, folder directories will be traversed</em></li>
+<li><code>-o [Location of Output Path]</code> <em>optional, location of prediction and exif files (default: APPLICATION_PATH/output/</em></li>
+<li><code>-v</code> <em>verbose flag</em></li>
+</ul>
+<p>Example:
+<code>python predict.py --image [IMAGE PATH LOCATION] -v</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-2)-Parse-and-Search">Step 1.2 Parse and Search<a class="anchor-link" href="#Step-2)-Parse-and-Search"></a></h3><p>After the directory has been indexed, search for guns or objects by parsing the csv files and the exif data. Returns the top-k predictions based on a certain threshold (probability values). Default is search for guns with top-20 predictions and no threshold value (return everything).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>search.py
+Parameters:</p>
+<ul>
+<li><code>--prediction [Location of Prediction File Path]</code> <em>location of images, folder directories will be traversed</em></li>
+<li><code>--exif [Location of Exif File Path]</code> <em>location of images, folder directories will be traversed</em></li>
+<li><code>--search</code> <em>search values, delimited by comma, default is search for guns</em></li>
+<li><code>-k</code> <em>top k values, default is 20</em></li>
+<li><code>-t</code> <em>threshold value</em></li>
+<li><code>-v</code> <em>verbose flag</em></li>
+</ul>
+<p>Example:</p>
+<ul>
+<li>search for guns and return top 5 results with probabilities higher than or equal to 85%</li>
+</ul>
+<p><code>python D:\APP\cbis\search.py --prediction  "output\\predictions.csv" --exif "output\\exif.csv" -v  -k 5 -t 0.85</code></p>
+<ul>
+<li>search for images with the words: <em>guns, water, and scuba</em> in the predictions and return top 10 results with probabilities higher than or equal to 85%</li>
+</ul>
+<p><code>python D:\APP\cbis\search.py --prediction  "output\\predictions.csv" --exif "output\\exif.csv" -s "gun,water,scuba" -v -k 10 -t 0.85</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-3)-Report">Step 1.3 Report<a class="anchor-link" href="#Step-3)-Report"></a></h3><p>Summary of predictions, gives the results in labels and the count of images with that labels
+report.py</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><code>--prediction [Location of Prediction File Path]</code> <em>location of images, folder directories will be traversed</em></li>
+<li><code>-k</code> <em>top k values, default is 20</em></li>
+<li><code>-t</code> <em>threshold value</em></li>
+<li><code>-v</code> <em>verbose flag</em></li>
+</ul>
+<p>Example: <code>python D:\APP\cbis\report.py --prediction  'D:\\APP\\cbis\\output\\predictions.csv' -v</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h1 id="The-Application-(Web-via-Flask)">The Application (Web via Flask)<a class="anchor-link" href="#The-Application-(Web-via-Flask)"></a></h1><p>The application needed for the console is structured this way:</p>
+
+<pre><code>root
+ |---cbis/
+       |---dataset/ 
+               |--- contains the images for searching  
+       |---maps/ 
+               |--- contains the maps when the GPS coordinates are found
+
+       |---models/                         -&gt; contains the model weights pre-trained in imagenet   
+            |---imagenet_class_index.json
+            |---inception_v3_weights_tf_dim_ordering_tf_kernels.h5
+            |---resnet50_weights_tf_dim_ordering_tf_kernels.h5
+            |---vgg16_weights_tf_dim_ordering_tf_kernels.h5
+            |---xception_weights_tf_dim_ordering_tf_kernels.h5
+
+       |---pyimagesearch/
+            |---loader.py
+            |---searcher.py
+            |---exif.py
+            |---utils.py
+
+        |---static/       
+               |--- contains the css, javascript image files for rendering the website
+
+        |---templates/       
+               |--- contains the html files      
+
+               |---output/          # contains the output files 
+                    |---predictions.csv         -&gt; contains the output predictions for each image 
+                    |---exif.csv                -&gt; contains the exif data for each processed image
+                    |---summary_predictions.csv -&gt; contains the predicted labels and the count 
+                    |---unprocessed.csv         -&gt; contains the files that were not processed           
+        |---app.py                  # flask application         
+        |---predict.py
+        |---search.py       
+        |---report.py  
+        |---report.py  
+        |---requirements.venv.txt   # pip installation requirements</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Running-the-Flask-powered-web-application">Running the Flask-powered web application<a class="anchor-link" href="#Running-the-Flask-powered-web-application"></a></h1><h2 id="*-Using-the-Web-Application">(2) Using the Web Application<a class="anchor-link" href="#*-Using-the-Web-Application"></a></h2><p>References:</p>
+<ul>
+<li><a href="https://www.pyimagesearch.com/2014/12/08/adding-web-interface-image-search-engine-flask/">https://www.pyimagesearch.com/2014/12/08/adding-web-interface-image-search-engine-flask/</a></li>
+<li><a href="https://pythonspot.com/flask-web-app-with-python/">https://pythonspot.com/flask-web-app-with-python/</a></li>
+<li><a href="https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html">https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Run the web application using this command from the terminal:</p>
+<p><code>python app.py</code></p>
+<p>To run in debug mode:</p>
+<ul>
+<li><p>Unix:</p>
+
+<pre><code>export FLASK_DEBUG=1
+python app.py</code></pre>
+</li>
+<li><p>Windows:</p>
+
+<pre><code>set FLASK_DEBUG=1
+python app.py</code></pre>
+</li>
+</ul>
+<p>Output should show the following:</p>
+
+<pre><code>(cbis) D:\APP\cbis&gt;set FLASK_DEBUG=1
+(cbis) D:\APP\cbis&gt;python app.py
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 938-274-443
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [26/Feb/2019 14:54:05] "[37mGET / HTTP/1.1[0m" 200 -</code></pre>
+<p>Open <a href="http://localhost:5000">http://localhost:5000</a> from your favorite web browser.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Instructions">Instructions:<a class="anchor-link" href="#Instructions"></a></h2>
+    <h3 id="Step-1:-Load-and-Index-the-image-directories-from-the-console.">Step 2.1 <i>Console</i> -
+        Load and Index the image directories from the console.<a class="anchor-link" href="#Step-1:-Load-and-Index-the-image-directories-from-the-console."></a></h3>
+    <ul>
+        <li>The images for prediction should reside in <code>APPLICATION_PATH/cbis/dataset</code></li>
+        <li>This allows the application to load and identify the top-20 predictions for each and every image in the directory. The filename and path will be displayed. </li>
+        <li>Run the prediction from the console
+        <code>python prediction.py --image dataset/FOLDER -v</code></li>
+        <li>After the prediction completes (depending on the number of files,it might take a while), the file will be saved in the output directory (APPLICATION_PATH/output/). </li>
+    </ul>
+    <h3 id="Step-2:-Open-the-web-application-and-parse/visualise-results">Step 2.2 <i>Web</i> -
+        Open the web application and parse/visualise results<a class="anchor-link" href="#Step-2:-Open-the-web-application-and-parse/visualise-results"></a></h3>
+    <ul>
+        <li>Run the flask <code>python app.py</code></li>
+        <li>From the browser, open: <code>localhost:5000</code></li>
+        <li>The files are taken from <code>APPLICATION_PATH/cbis/output</code>. Choose any of the files and parse the results.</li>
+        <li>Start searching! </li>
+    </ul>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<br /><br /><br />
+<a href="/" >Back</a>
+</body>
+
+ 
+
+
+</html>
