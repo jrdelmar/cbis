@@ -7,7 +7,7 @@ import os
 import re
 import pandas as pd
 from datetime import datetime
-from pyimagesearch.utils import clean_filename
+from pyimagesearch.utils import clean_filename, log
 import random
 
 def _parse_for_report(df, verbose, top_k = 20, threshold=None, ascending=False):
