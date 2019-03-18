@@ -280,6 +280,7 @@ function find_info_file(filename, data){
  */
 function search(data){
     var dataset_search = []; //for dataset visualisation
+    var $dataset_search
     $.ajax({
         type: "POST",
         url: "/search",
