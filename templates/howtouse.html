@@ -85,8 +85,10 @@ div#notebook {
     <li><a target="_blank" href="https://pip.pypa.io/en/stable/">pip</a></li>
     <li><a target="_blank" href="https://www.python.org/downloads/">python 3</a></li>
     <li><a target="_blank" href="https://virtualenv.pypa.io/en/latest/">virtual environment</a></li>
+    <li>source code in <a target="_blank" href="https://github.com/jrdelmar/cbis">github</a>
+    <code>git clone https://github.com/jrdelmar/cbis.git</code></li>
 </ul>
-
+    <p>Note: Skip the installation and go to <a href="#"><em> this part of the page </em></a> if you prefer to download the Virtualbox Ubuntu .ova file.</p>
 </div>
 </div>
 </div>
@@ -136,6 +138,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<hr />
 <h2 id="Install-with-Ubuntu-18.04.1-LTS-Fresh-(VirtualBox)">Install with Ubuntu 18.04.1 LTS Fresh (VirtualBox)<a class="anchor-link" href="#Install-with-Ubuntu-18.04.1-LTS-Fresh-(VirtualBox)"></a></h2><p>Reference: <a href="https://linoxide.com/linux-how-to/setup-python-virtual-environment-ubuntu/">https://linoxide.com/linux-how-to/setup-python-virtual-environment-ubuntu/</a></p>
 
 </div>
@@ -172,49 +175,24 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create virtualenvironment</p>
 <p><code>python3 -m venv cbis</code></p>
-<p>Activate virtual environment (directory /home/joanna/venv)</p>
+<p>Activate virtual environment (directory /home/cbis/cbis)</p>
 
-<pre><code>cbis@cbis_ubuntu:/venv$ source ~/venv/cbis/bin/activate
-(cbis) cbis@cbis_ubuntu:/venv$ which python3
-/venv/cbis/bin/python3
-(cbis) cbis@cbis_ubuntu:/venv$</code></pre>
-<p>To deactivate:
+<pre><code>
+cbis@cbis-Virtualbox:~$ source ~/cbis/bin/activate
+(cbis) cbis@cbis-Virtualbox:/venv$ which python3
+/home/cbis/cbis/bin/python3
+(cbis) cbis@cbis-Virtualbox:~$
+</code></pre>
+
+    <p>To deactivate:
 <code>deactivate</code></p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Load-the-Requirements-File">Load the Requirements File<a class="anchor-link" href="#Load-the-Requirements-File"></a></h2><p>To solve issues with wheel:  <code>pip3 install wheel</code></p>
-<p>Install pre-requisites using the requirements text file:
-<code>pip3 install -r requirements.venv.txt</code></p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Installation issues:</p>
-<ul>
-<li>Tensorflow
-<pre><code>Collecting tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))
-Could not find a version that satisfies the requirement tensorflow==1.12.0 (from -r requirements.venv.txt (line 14)) (from versions: 1.13.0rc1, 1.13.0rc2, 1.13.1, 2.0.0a0)
-No matching distribution found for tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))</code></pre>
-</li>
-</ul>
-<p>Install manually:
-<code>pip install --upgrade tensorflow</code></p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt"></div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Cartopy-Installation-via-Anaconda">Cartopy Installation via Anaconda<a class="anchor-link" href="#Cartopy-Installation-via-Anaconda"></a></h3>
@@ -233,29 +211,29 @@ ModuleNotFoundError: No module named 'cartopy'</code></pre>
 <p>To install, choose the correct architecture (use Anaconda3 for Python3) and download the anaconda installation from the repository:
     <a href="https://repo.anaconda.com/archive">https://repo.anaconda.com/archive/</a></p>
 <pre><code>
-    $ wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
-    --2019-03-18 12:01:27--  https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
-    Resolving repo.anaconda.com (repo.anaconda.com)... 104.16.130.3, 104.16.131.3, 2606:4700::6810:8203, ...
-    Connecting to repo.anaconda.com (repo.anaconda.com)|104.16.130.3|:443... connected.
+    (cbis) cbis@cbis-VirtualBox:~$ wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
+    --2019-03-18 15:56:52--  https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
+    Resolving repo.anaconda.com (repo.anaconda.com)... 104.16.131.3, 104.16.130.3, 2606:4700::6810:8203, ...
+    Connecting to repo.anaconda.com (repo.anaconda.com)|104.16.131.3|:443... connected.
     HTTP request sent, awaiting response... 200 OK
-    Length: 658699654 (628M) [application/x-sh]
-    Saving to: ‘Anaconda2-2018.12-Linux-x86_64.sh’
+    Length: 684237703 (653M) [application/x-sh]
+    Saving to: ‘Anaconda3-2018.12-Linux-x86_64.sh’
 
-    Anaconda2-2018.12-Linux-x86_64.sh     100%[========================================================================>] 628,18M  2,27MB/s    in 5m 0s
+    Anaconda3-2018.12-Linu 100%[==========================>] 652.54M  2.14MB/s    in 10m 1s
 
-    2019-03-18 12:06:28 (2,10 MB/s) - ‘Anaconda3-2018.12-Linux-x86_64.sh’ saved [658699654/658699654]
+    2019-03-18 16:06:54 (1.08 MB/s) - ‘Anaconda3-2018.12-Linux-x86_64.sh’ saved [684237703/684237703]
 </code></pre>
 
     <p>Compare the installation to ensure integrity of the file. Check the md5 hash against the published hash from the repository.</p>
     <pre><code>
-    $ md5sum Anaconda3-2018.12-Linux-x86_64.sh
+    (cbis) cbis@cbis-VirtualBox:~$ md5sum Anaconda3-2018.12-Linux-x86_64.sh
     c9af603d89656bc89680889ef1f92623  Anaconda3-2018.12-Linux-x86_64.sh
     </code></pre>
 
-    <p>Run the bash file to proceed with the installation package.</p>
-    <pre><code>
-    bash Anaconda3-2018.12-Linux-x86_64.sh
+    <p>Run the bash file to proceed with the installation package. <code>bash Anaconda3-2018.12-Linux-x86_64.sh </code></p>
 
+    <p>The output will be something like this:</p>
+    <pre><code>
     Welcome to Anaconda3 2018.12
 
     In order to continue the installation process, please review the license
@@ -267,19 +245,79 @@ ModuleNotFoundError: No module named 'cartopy'</code></pre>
     <p>When the installation completes, add the installation to the PATH file.
         Type <code>yes</code> so we can use the <code>conda</code> command.</p>
     <pre><code>
+    installation finished.
+    Do you wish the installer to initialize Anaconda3
+    in your /home/cbis/.bashrc ? [yes|no]
+    [no] >>> yes
+    </code></pre>
+
+    <p>Activate the installation by running <code>source ~/.bashrc</code></p>
+
+<p>From the virtual environment (cbis venv), install <a href="https://scitools.org.uk/cartopy/docs/latest/installing.html">Cartopy</a></p>
+    <code>source ~/cbis/bin/activate</code> <code>conda install -c conda-forge cartopy</code>
+
+    <pre><code>
+cbis@cbis-VirtualBox:~$ source ~/cbis/bin/activate
+(cbis) cbis@cbis-VirtualBox:~$ conda install -c conda-forge cartopy
+
+The following NEW packages will be INSTALLED:
+
+    cartopy:  0.17.0-py37h0aa2c8f_1004 conda-forge
+    geos:     3.7.1-hf484d3e_1000      conda-forge
+    owslib:   0.17.1-py_0              conda-forge
+    proj4:    5.2.0-h14c3975_1001      conda-forge
+    pyepsg:   0.4.0-py_0               conda-forge
+    pykdtree: 1.3.1-py37h3010b51_1002  conda-forge
+    pyproj:   1.9.6-py37hc0953d3_1000  conda-forge
+    pyshp:    2.1.0-py_0               conda-forge
+    shapely:  1.6.4-py37h2afed24_1003  conda-forge
+
+The following packages will be UPDATED:
+
+    conda:    4.5.12-py37_0                        --> 4.6.8-py37_0 conda-forge
+
+Proceed ([y]/n)? y
 
     </code></pre>
 
+</div>
+</div>
+</div>
 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Load-the-Requirements-File">Load the Requirements File<a class="anchor-link" href="#Load-the-Requirements-File"></a></h3>
+    <p>To solve issues with wheel:  <code>pip3 install wheel</code></p>
+    <p>Install pre-requisites using the requirements text file:<code>pip3 install -r requirements.venv.txt</code></p>
+<pre><code>
+cbis@cbis-VirtualBox:~/app/cbis$ pip3 install -r requirements.venv.txt
+Collecting glob2==0.6 (from -r requirements.venv.txt (line 1))
+Downloading https://files.pythonhosted.org/packages/f0/e8/970c7a031b2d7f9a21fefaa8c9d5c38001f8f25055f4ffcb32b3dbecd1ea/glob2-0.6.tar.gz
+Collecting Keras==2.2.4 (from -r requirements.venv.txt (line 2))
+Downloading https://files.pythonhosted.org/packages/5e/10/aa32dad071ce52b5502266b5c659451cfd6ffcbf14e6c8c4f16c0ff5aaab/Keras-2.2.4-py2.py3-none-any.whl (312kB)
+100% |████████████████████████████████| 317kB 814kB/s
+</code></pre>
+
+
+<p>Some Installation issues and how to fix them:</p>
 <ul>
-<li><a href="https://scitools.org.uk/cartopy/docs/latest/installing.html">Cartopy</a>
-<pre><code>conda install -c conda-forge cartopy</code></pre>
+<li>Tensorflow
+<pre><code>Collecting tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))
+Could not find a version that satisfies the requirement tensorflow==1.12.0 (from -r requirements.venv.txt (line 14)) (from versions: 1.13.0rc1, 1.13.0rc2, 1.13.1, 2.0.0a0)
+No matching distribution found for tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))</code></pre>
 </li>
 </ul>
+<p>Install manually:
+<code>pip install --upgrade tensorflow</code></p>
 
 </div>
 </div>
 </div>
+
+
+
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
