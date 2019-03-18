@@ -42,7 +42,7 @@ def get_key_of_max_value(l):
     return x[0]        
  
 
-def log(message, verbose):
+def log(message, verbose=False):
     if verbose:
         print(message)
         
@@ -50,7 +50,7 @@ def log(message, verbose):
     
     
     
-def write_to_log(message, verbose):
+def write_to_log(message, verbose=False):
     
     indexPath = os.path.dirname(__file__) #utils path
     filename = "cbis" + datetime.now().strftime("-%Y%m%d") + ".log"
@@ -71,7 +71,6 @@ def write_to_log(message, verbose):
 #read the file and return df object
 def parse(file):
     return pd.read_csv(file,header=0)    
-    
 
 
 # data should be dataframe, always in verbose mode    
