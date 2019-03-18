@@ -339,13 +339,15 @@ function search(data){
                 var item_label = "";//"<p><strong>" + filename + "</strong> " + label + " (" + prob + "%)</p>"
                 var item_label_title = "File: "+ filename + " Label: "+label + " (" + prob + "%)";
                 //append results
-                //TODO: shorten the filename for display
+                //console.log(file, filename, file.replace(filename, encodeURI(filename)))
+                var encodedFile = file.replace(filename, encodeURI(filename))
+
                 var icons = '<div class="text-left clear-marginbot marginbot10"><span class="file-info show_info">' +
                     '<a href="#" title="' + caption + '"><i class="icon-file icon-circled icon-bglight icon"></i></a></span> '
-                    + '<span><a class="download" href="' + file + '" title="Download '+ filename + '"><i class="icon-cloud-download icon-circled icon-bglight icon"></i></a></span></div>'
+                    + '<span><a class="download" href="' + encodedFile + '" title="Download '+ filename + '"><i class="icon-cloud-download icon-circled icon-bglight icon"></i></a></span></div>'
                 var content = '<li class="item-thumbs span2 design" data-id="' + data_id + '" data-type="'+ search_label +'">'
                             +'<div class="item" id="img-label-' + data_id + '">' + item_label + icons
-                            +'<div class="show_info"><img title="'+item_label_title+'" src="' + file + '" alt="" data-file-pred="' + pred_file
+                            +'<div class="show_info"><img title="'+item_label_title+'" src="' + encodedFile + '" alt="" data-file-pred="' + pred_file
                             +'" data-file-exif="' + exif_file + '" /></div></div></li>';
 
                 $('#thumbs').append(content);
