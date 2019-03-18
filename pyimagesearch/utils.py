@@ -66,7 +66,7 @@ def write_to_log(message, verbose=False):
         #else:
         #    print('file existed, appending')
             
-        f.write("{} {}".format(datetime.now().strftime("%Y-%m-%d %X"), message + "\n"))
+        f.write("{} {}".format(datetime.now().strftime("%Y-%m-%d %X"), str(message) + "\n"))
     
 #read the file and return df object
 def parse(file):
