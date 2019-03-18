@@ -478,6 +478,7 @@ function call_thumbs_animation(){
 }
 
 function visualize_results(dataset){
+    if (dataset != null){
         if (dataset.length > 0){
             $("#section-chart-search").show();
             $("#chart-search").html(""); //clear content first
@@ -486,5 +487,7 @@ function visualize_results(dataset){
         }else {
             $("#section-chart-search").hide();
         }
+    }
+
 }
 
