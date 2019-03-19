@@ -116,10 +116,10 @@ function display_random_images(image_list){
     for (var k in image_list) {
         var file = image_list[k]
         var filename = file.split('/').pop().split('\\').pop();
-
+        var encodedFile = file.replace(filename, encodeURI(filename))
         var content = '<li class="item-thumbs span1 design">'
                     +'<div class="item">'
-                    +'<img title="' + filename +'" src="' + file + '" alt="" /></div></li>';
+                    +'<img title="' + filename +'" src="' + encodedFile + '" alt="" /></div></li>';
 
         $('#thumbs-sample').append(content);
 
