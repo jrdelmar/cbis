@@ -3,13 +3,13 @@
 <hr style="border-top: 3px solid #1a082a;margin:0em" />
 <div style="width:100%;background-color:#;">
 <div style="display:table;width:100%">
-    <img src="static/img/logo.png" style="margin:10px;float:left" /> 
     <span style="text-align:center;display:table-cell;vertical-align:top">
         <h1 style="color:#a03377">Content-Based Image Search</h1>
         <h2 style="color:#a03377">Using Pre-trained Models in Machine Learning as a Digital Forensic Tool</h2>
         <h5 style="color:#e54d86">InceptionV3 | ImageNet | Tensorflow | Keras | Python3</h5>
     </span>
-</div><span style="color:#a03377;padding-left:10px">@jrdelmar(2019)</span></div>
+</div>
+<span style="color:#a03377;padding-left:10px">@jrdelmar(2019)</span></div>
 <hr style="border-top: 3px solid #1a082a;margin:0em" />
 
 # Installation Notes
