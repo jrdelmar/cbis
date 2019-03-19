@@ -218,8 +218,8 @@ def search():
                 #idx = img[0].find("dataset") #find the first instance of 'dataset' folder
                 fname = clean_filename(img[0], 'dataset')
                 #get the filename resolution
-
-                w, h = Image.open(os.path.abspath(img[0])).size
+                #print(os.path.abspath(img[0]))
+                w, h = Image.open(img[0]).size
                 icon_size = ""
                 if (w*h > 30000):
                     icon_size = "-2x"
