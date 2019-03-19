@@ -1,8 +1,0 @@
-{
-  "test_loader.py::test_loader_test_image": true,
-  "test_predict.py": true,
-  "test_predict.py::test_func": true,
-  "test_searcher.py::test_search_not_gun1": true,
-  "test_utils.py::test_is_image_img_text": true,
-  "test_utils.py::test_is_image_text": true
-}

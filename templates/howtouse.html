@@ -85,36 +85,13 @@ div#notebook {
 <h2 id="Pre-requisites">Pre-requisites<a class="anchor-link" href="#Pre-requisites"></a></h2><p>The user is expected to know how to install and troubleshoot python-related installations.
 A Virtualbox file is provided a semblance of a ready-to-use application. Skip the installation steps if you prefer the Ubuntu Vbox file.</p>
 <ul>
-<li><a target="_blank" href="https://www.anaconda.com/distribution/#linux">anaconda</a></li>
-<li><a target="_blank" href="https://pip.pypa.io/en/stable/">pip</a></li>
-<li><a target="_blank" href="https://www.python.org/downloads/">python 3</a></li>
-<li><a target="_blank" href="https://virtualenv.pypa.io/en/latest/">virtual environment</a></li>
-<li>source code in <a target="_blank" href="https://github.com/jrdelmar/cbis.git">git</a>:  <code>git clone https://github.com/jrdelmar/cbis.git</code></li>
+<li><a href="https://www.python.org/downloads/">python 3</a></li>
+<li><a href="https://www.anaconda.com/distribution/#linux">anaconda</a></li>
+<li>source code in <a href="https://github.com/jrdelmar/cbis.git">github</a>:  <code>git clone https://github.com/jrdelmar/cbis.git</code></li>
 <li>Ubuntu Virtualbox - The Ubuntu pre-built .ova file can be downloaded from one-drive. The file is too large to be uploaded into github-lfts.
-Get the ova file <a target="_blank" href="link"><em>here</em></a> and skip to <a href="/howtouse#Pre-installed-Ubuntu-Virtualbox"><em>this part of the installation</em></a>.</li>
+    Download the ova file <a target="_blank" href="http://bit.ly/2HFXnkv"><em>here</em></a> and skip to <a href="/howtouse#Pre-installed-Ubuntu-Virtualbox"><em>this part of the installation</em></a></li>
+<li><a href="https://virtualenv.pypa.io/en/latest/">virtual environment</a> - Optional</li>
 </ul>
-<p>References:</p>
-<ul>
-<li><a href="https://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/">https://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/</a></li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Anaconda">Anaconda<a class="anchor-link" href="#Anaconda"></a></h3><p>Anaconda is a package management and deployment environment. For this project, cartopy is required to provide offline maps. Installation via Anaconda is by far the simplest. Installing the Anaconda navigator also installs Jupyter from which this notebook is run.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="PIP">PIP<a class="anchor-link" href="#PIP"></a></h3><p>Pip is a tool for installing python packages from the python package index. This project uses pip to install dependencies. Follow the documentation for pip installation on your own machine.</p>
 
 </div>
 </div>
@@ -132,7 +109,18 @@ Get the ova file <a target="_blank" href="link"><em>here</em></a> and skip to <a
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Virtual-environment">Virtual environment<a class="anchor-link" href="#Virtual-environment"></a></h3><p>virtualenv is a module used by the python community to isolate python environments. This is beneficial for a variety of reasons:</p>
+<h3 id="Anaconda">Anaconda<a class="anchor-link" href="#Anaconda"></a></h3><p>Anaconda is a package management and deployment environment. Installation via Anaconda is by far the simplest because cartopy, the module used to create offline maps has the simplest installation in the conda environment.</p>
+<h4 id="Cartopy"><em>Cartopy</em><a class="anchor-link" href="#Cartopy"></a></h4><p>Pip is another popular option for installing python packages from the python package index. You can also opt to install pip to install dependencies to run the console. However, the <em>cartopy</em> module used for the offline map is a little painful to install outside of the Anaconda environment.
+    See some of the issues <a href="https://www.pythonanywhere.com/forums/topic/9366/">here</a> (You had been warned, haha). The recommended installation is through <a href="https://scitools.org.uk/cartopy/docs/v0.15/installing.html">conda</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Virtual-environment---Optional">Virtual environment - Optional<a class="anchor-link" href="#Virtual-environment---Optional"></a></h3><p>virtualenv is a module used by the python community to isolate python environments. This is beneficial for a variety of reasons:</p>
 <ul>
 <li>allows installation of packages without affecting the global/system site-packages</li>
 <li>allows downgrade/upgrade of packages and modules to evaluate the application</li>
@@ -175,7 +163,7 @@ Get the ova file <a target="_blank" href="link"><em>here</em></a> and skip to <a
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Install virtualenvironment <code>sudo apt-get install -y python3-venv</code></p>
+<h3 id="Optional"><em>Optional</em><a class="anchor-link" href="#Optional"></a></h3><p>Install virtualenvironment <code>sudo apt-get install -y python3-venv</code></p>
 <p>Create virtualenvironment <code>python3 -m venv cbis</code></p>
 <p>Activate virtual environment (directory /home/cbis/cbis)</p>
 
@@ -193,19 +181,25 @@ Get the ova file <a target="_blank" href="link"><em>here</em></a> and skip to <a
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Cartopy-Installation-via-Anaconda">Cartopy Installation via Anaconda<a class="anchor-link" href="#Cartopy-Installation-via-Anaconda"></a></h3><p>Cartopy is painful to install on linux servers, so I used anaconda to install cartopy.</p>
+<h2 id="Download-the-Source-code">Download the Source code<a class="anchor-link" href="#Download-the-Source-code"></a></h2><p>Download the source code from github <code>git clone https://github.com/jrdelmar/cbis.git</code></p>
 
-<pre><code>root@joanna:/home/app/cbis# python app.py
-Traceback (most recent call last):
-  File "app.py", line 16, in &lt;module&gt;
-    from pyimagesearch.map import create_map
-  File "/home/app/cbis/pyimagesearch/map.py", line 8, in &lt;module&gt;
-    import cartopy.crs as ccrs
-ModuleNotFoundError: No module named 'cartopy'</code></pre>
-<p><strong>This module is only necessary for the web parser for the offline map display of the coordinates. You do not need to install this if you just need to run the console.</strong></p>
-<p>To install, choose the correct architecture (use Anaconda3 for Python3) and download the anaconda installation from the repository: <a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a></p>
+<pre><code>cbis@cbis-VirtualBox:~/app$ git clone https://github.com/jrdelmar/cbis.git
+Cloning into 'cbis'...
+remote: Enumerating objects: 404, done.
+remote: Counting objects: 100% (404/404), done.
+remote: Compressing objects: 100% (294/294), done.</code></pre>
 
-<pre><code>(cbis) cbis@cbis-VirtualBox:~$ wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's install using the Anaconda environment.</p>
+<h2 id="Installation-via-Anaconda">Installation via Anaconda<a class="anchor-link" href="#Installation-via-Anaconda"></a></h2><h3 id="Download">Download<a class="anchor-link" href="#Download"></a></h3><p>To install, choose the correct architecture (use Anaconda3 for Python3) and download the anaconda installation from the repository: <a href="https://repo.anaconda.com/archive/">https://repo.anaconda.com/archive/</a></p>
+
+<pre><code>(base) cbis@cbis-VirtualBox:~$ wget https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
 --2019-03-18 15:56:52--  https://repo.anaconda.com/archive/Anaconda3-2018.12-Linux-x86_64.sh
 Resolving repo.anaconda.com (repo.anaconda.com)... 104.16.131.3, 104.16.130.3, 2606:4700::6810:8203, ...
 Connecting to repo.anaconda.com (repo.anaconda.com)|104.16.131.3|:443... connected.
@@ -216,11 +210,11 @@ Saving to: ‘Anaconda3-2018.12-Linux-x86_64.sh’
 Anaconda3-2018.12-Linu 100%[==========================&gt;] 652.54M  2.14MB/s    in 10m 1s
 
 2019-03-18 16:06:54 (1.08 MB/s) - ‘Anaconda3-2018.12-Linux-x86_64.sh’ saved [684237703/684237703]</code></pre>
-<p>Compare the installation to ensure integrity of the file. Check the md5 hash against the published hash from the repository.</p>
+<h3 id="Verify">Verify<a class="anchor-link" href="#Verify"></a></h3><p>Compare the installation to ensure integrity of the file. Check the md5 hash against the published hash from the repository.</p>
 
-<pre><code>(cbis) cbis@cbis-VirtualBox:~$ md5sum Anaconda3-2018.12-Linux-x86_64.sh
+<pre><code>(base) cbis@cbis-VirtualBox:~$ md5sum Anaconda3-2018.12-Linux-x86_64.sh
 c9af603d89656bc89680889ef1f92623  Anaconda3-2018.12-Linux-x86_64.sh</code></pre>
-<p>Run the bash file to proceed with the installation package.</p>
+<h3 id="Run">Run<a class="anchor-link" href="#Run"></a></h3><p>Run the bash file to proceed with the installation package.</p>
 
 <pre><code>bash Anaconda3-2018.12-Linux-x86_64.sh</code></pre>
 <p>The output will be something like this:</p>
@@ -237,122 +231,11 @@ Please, press ENTER to continue
 Do you wish the installer to initialize Anaconda3
 in your /home/cbis/.bashrc ? [yes|no]
 [no] &gt;&gt;&gt;</code></pre>
-<p>Activate the installation and the virtual environment by running <code>source ~/.bashrc</code> and <code>source ~/cbis/bin/activate</code>.</p>
-<p>Update conda <code>conda update --all</code>. This will take a long time. This is optional as this will take the latest source code from the repository and update the packages.</p>
-<p>From the virtual environment, install <a href="https://scitools.org.uk/cartopy/docs/latest/installing.html">Cartopy</a></p>
-
-<pre><code>(base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$ conda install -c conda-forge cartopy
-Collecting package metadata: done</code></pre>
-<p>The output will look something like this:</p>
-
-<pre><code>The following NEW packages will be INSTALLED:
-
-    cartopy:  0.17.0-py37h0aa2c8f_1004 conda-forge
-    geos:     3.7.1-hf484d3e_1000      conda-forge
-    owslib:   0.17.1-py_0              conda-forge
-    proj4:    5.2.0-h14c3975_1001      conda-forge
-    pyepsg:   0.4.0-py_0               conda-forge
-    pykdtree: 1.3.1-py37h3010b51_1002  conda-forge
-    pyproj:   1.9.6-py37hc0953d3_1000  conda-forge
-    pyshp:    2.1.0-py_0               conda-forge
-    shapely:  1.6.4-py37h2afed24_1003  conda-forge
-
-The following packages will be UPDATED:
-
-    conda:    4.5.12-py37_0                        --&gt; 4.6.8-py37_0 conda-forge
-
-Proceed ([y]/n)? y</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Load-the-Requirements-File">Load the Requirements File<a class="anchor-link" href="#Load-the-Requirements-File"></a></h3><p>The requirements file is located in the root application directory.</p>
-<ul>
-<li><p>Clone the repository and install the dependencies using the requirements.txt file. <code>git clone https://github.com/jrdelmar/cbis.git</code></p>
-</li>
-<li><p>Again, make sure this is installed in the virtual environment. <code>source ~/.bashrc</code> and <code>source ~/cbis/bin/activate</code></p>
-</li>
-<li>Run <code>pip3 install cython</code> to avoid cartopy installation issues</li>
-<li>Install pre-requisites using the requirements text file: <code>pip3 install -r requirements.venv.txt</code></li>
-</ul>
-<p>The output will look somewhat like this:</p>
-
-<pre><code>cbis@cbis-VirtualBox:~/app/cbis$ pip3 install -r requirements.venv.txt
-Collecting glob2==0.6 (from -r requirements.venv.txt (line 1))
-  Downloading https://files.pythonhosted.org/packages/f0/e8/970c7a031b2d7f9a21fefaa8c9d5c38001f8f25055f4ffcb32b3dbecd1ea/glob2-0.6.tar.gz
-Collecting Keras==2.2.4 (from -r requirements.venv.txt (line 2))
-  Downloading https://files.pythonhosted.org/packages/5e/10/aa32dad071ce52b5502266b5c659451cfd6ffcbf14e6c8c4f16c0ff5aaab/Keras-2.2.4-py2.py3-none-any.whl (312kB)
-    100% |████████████████████████████████| 317kB 814kB/s</code></pre>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Encountered-Installation-issues:">Encountered Installation issues:<a class="anchor-link" href="#Encountered-Installation-issues:"></a></h2><ul>
-<li>Wheel </li>
-</ul>
-<p>In case there are issues with wheel:  <code>pip3 install wheel</code></p>
-<ul>
-<li>Tensorflow </li>
-</ul>
-<p>Error:</p>
-
-<pre><code>Collecting tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))
-  Could not find a version that satisfies the requirement tensorflow==1.12.0 (from -r requirements.venv.txt (line 14)) (from versions: 1.13.0rc1, 1.13.0rc2, 1.13.1, 2.0.0a0)
-No matching distribution found for tensorflow==1.12.0 (from -r requirements.venv.txt (line 14))</code></pre>
-<p>Install manually:
-<code>pip install --upgrade tensorflow</code></p>
-<ul>
-<li>Matplotlib</li>
-</ul>
-<p>Error:</p>
-
-<pre><code>(cbis) cbis@cbis-VirtualBox:~/app/cbis$ python3 app.py
-Traceback (most recent call last):
-  File "app.py", line 16, in &lt;module&gt;
-    from pyimagesearch.map import create_map
-  File "/home/cbis/app/cbis/pyimagesearch/map.py", line 7, in &lt;module&gt;
-    import matplotlib.pyplot as plt
-  File "/home/cbis/cbis/lib/python3.6/site-packages/matplotlib/pyplot.py", line 115, in &lt;module&gt;
-    _backend_mod, new_figure_manager, draw_if_interactive, _show = pylab_setup()
-  File "/home/cbis/cbis/lib/python3.6/site-packages/matplotlib/backends/__init__.py", line 62, in pylab_setup
-    [backend_name], 0)
-  File "/home/cbis/cbis/lib/python3.6/site-packages/matplotlib/backends/backend_tkagg.py", line 4, in &lt;module&gt;
-    from . import tkagg  # Paint image to Tk photo blitter extension.
-  File "/home/cbis/cbis/lib/python3.6/site-packages/matplotlib/backends/tkagg.py", line 5, in &lt;module&gt;
-    from six.moves import tkinter as Tk
-  File "/home/cbis/cbis/lib/python3.6/site-packages/six.py", line 92, in __get__
-    result = self._resolve()
-  File "/home/cbis/cbis/lib/python3.6/site-packages/six.py", line 115, in _resolve
-    return _import_module(self.mod)
-  File "/home/cbis/cbis/lib/python3.6/site-packages/six.py", line 82, in _import_module
-    __import__(name)
-ModuleNotFoundError: No module named 'tkinter'</code></pre>
-<p>Install manually:
-<code>sudo pip install matplotlib</code>
-<code>sudo apt-get install python3-tk</code></p>
-<ul>
-<li>Cartopy</li>
-</ul>
-<p>Reinstall the cartopy via <code>conda install -c conda-forge cartopy</code></p>
-
-<pre><code>(base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$ python3 app.py
- * Serving Flask app "app" (lazy loading)
- * Environment: production
-   WARNING: Do not use the development server in a production environment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 150-948-040</code></pre>
+<h3 id="Activate">Activate<a class="anchor-link" href="#Activate"></a></h3><p>Activate the installation and the virtual environment by running <code>source ~/.bashrc</code>.</p>
+<h3 id="Load-Dependencies">Load Dependencies<a class="anchor-link" href="#Load-Dependencies"></a></h3><p>Let's install the dependencies using conda install from the requirements file found in github.
+From the terminal, install each dependencies using conda install command.
+<code>while read requirement; do conda install --yes $requirement; done &lt; requirements.txt</code></p>
+<p>Reference: <a href="https://www.technologyscout.net/2017/11/how-to-install-dependencies-from-a-requirements-txt-file-with-conda/">https://www.technologyscout.net/2017/11/how-to-install-dependencies-from-a-requirements-txt-file-with-conda/</a></p>
 
 </div>
 </div>
@@ -371,8 +254,10 @@ ModuleNotFoundError: No module named 'tkinter'</code></pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Run-the-Code">Run the Code<a class="anchor-link" href="#Run-the-Code"></a></h2><p>Test with running the python code: (no trailing <code>/</code> for the paths)</p>
+<p>From the cbis/ directory:</p>
 <p><code>python3 predict.py -i dataset/sample -v</code></p>
-<p>Predict</p>
+<p><strong>Predict</strong></p>
+<p><code>python3 predict.py -i dataset/sample -v</code></p>
 
 <pre><code>cbis@cbis-VirtualBox:~/app/cbis$ python3 predict.py -i dataset/sample -v
 Using TensorFlow backend.
@@ -406,7 +291,8 @@ cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Search</p>
+<p><strong>Search</strong></p>
+<p><code>python3 search.py --prediction "output/sample_20190318_171951/predictions_20190318_171951.csv" --exif "output/sample_20190318_171951/exif_20190318_171951.csv" -v</code></p>
 
 <pre><code>cbis@cbis-VirtualBox:~/app/cbis$ python3 search.py --prediction "output/sample_20190318_171951/predictions_20190318_171951.csv" --exif "output/sample_20190318_171951/exif_20190318_171951.csv" -v
 [INFO] Argument List:
@@ -441,7 +327,8 @@ cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Report</p>
+<p><strong>Report</strong></p>
+<p><code>python3 report.py --prediction  "output/sample_20190318_171951/predictions_20190318_171951.csv" -v  -k 20 -t 0.50</code></p>
 
 <pre><code>cbis@cbis-VirtualBox:~/app/cbis$ python3 report.py --prediction  "output/sample_20190318_171951/predictions_20190318_171951.csv" -v  -k 20 -t 0.50
 [INFO] Argument List:
@@ -461,8 +348,26 @@ cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To freeze pip installations:
-<code>pip freeze &gt; requirements.cbis.ubuntu.txt</code></p>
+<hr>
+<h1 id="The-Application">The Application<a class="anchor-link" href="#The-Application"></a></h1><p>The source code can be used from the:</p>
+<ul>
+<li>console (python3)</li>
+<li>web browser (via python-flask)</li>
+</ul>
+<p>The console performs indexing and prediction, search and report.
+The web browser performs a more user-friendly parser and a visualisation option.</p>
+<p><em>console</em></p>
+<ul>
+<li>loads the pretrained keras model. For this project, I use the InceptionV3 model that is pre-trained on the ImageNet dataset. </li>
+<li>indexes the image directory by performing a prediction per image </li>
+<li>stores the prediction for each image in a csv file. The <em>prediction.csv</em> file is stored in the output folder</li>
+<li>extracts the exif information for each image and stores that infromation in a csv file. The <em>exif.csv</em> file is stored in the output folder</li>
+</ul>
+<p><em>web</em></p>
+<ul>
+<li>parses the prediction and exif files</li>
+<li>creates a visual representation of the data</li>
+</ul>
 
 </div>
 </div>
@@ -471,6 +376,7 @@ cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<hr>
 <h1 id="The-Application-(Console)">The Application (Console)<a class="anchor-link" href="#The-Application-(Console)"></a></h1><p>The application needed for the console is structured this way:</p>
 
 <pre><code>root
@@ -484,7 +390,7 @@ cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
        |---predict.py
        |---search.py
        |---report.py
-       |---requirements.venv.txt # pip installation requirements</code></pre>
+       |---requirements.txt # pip installation requirements</code></pre>
 
 </div>
 </div>
@@ -493,8 +399,7 @@ cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h1 id="Running-the-console-application">Running the console application<a class="anchor-link" href="#Running-the-console-application"></a></h1><p><em>This section discusses how to run the python script in the command line</em></p>
+<h2 id="1)-Running-the-console-application">1) Running the console application<a class="anchor-link" href="#1)-Running-the-console-application"></a></h2><p><em>This section discusses how to run the python script from the command line</em></p>
 
 </div>
 </div>
@@ -504,14 +409,6 @@ cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Step-1.1-Load-and-Predict">Step 1.1 Load and Predict<a class="anchor-link" href="#Step-1.1-Load-and-Predict"></a></h3><p>This module traverses the directory of images, loads the pretrained machine learning model and predicts the top-20 labels as an output. The output is stored as a csv file under the /output directory</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>predict.py
 Parameters:</p>
 <ul>
@@ -530,14 +427,6 @@ Parameters:</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Step-1.2-Parse-and-Search">Step 1.2 Parse and Search<a class="anchor-link" href="#Step-1.2-Parse-and-Search"></a></h3><p>After the directory has been indexed, search for guns or objects by parsing the csv files and the exif data. Returns the top-k predictions based on a certain threshold (probability values). Default is search for guns with top-20 predictions and no threshold value (return everything).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>search.py
 Parameters:</p>
 <ul>
@@ -565,16 +454,8 @@ Parameters:</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Step-1.3-Report">Step 1.3 Report<a class="anchor-link" href="#Step-1.3-Report"></a></h3><p>Summary of predictions, gives the results in labels and the count of images with that labels
-report.py</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-1.3-Report">Step 1.3 Report<a class="anchor-link" href="#Step-1.3-Report"></a></h3><p>Summary of predictions, gives the results in labels and the count of images with that labels</p>
+<p>report.py Parameters</p>
 <ul>
 <li><code>--prediction [Location of Prediction File Path]</code> <em>location of images, folder directories will be traversed</em></li>
 <li><code>-k</code> <em>top k values, default is 20</em></li>
@@ -582,6 +463,56 @@ report.py</p>
 <li><code>-v</code> <em>verbose flag</em></li>
 </ul>
 <p>Example: <code>python D:\APP\cbis\report.py --prediction  'D:\\APP\\cbis\\output\\predictions.csv' -v</code></p>
+<p>Filename: e.g. summary_predictions_20190226_124946.csv</p>
+<table>
+<thead><tr>
+<th>label</th>
+<th>count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lakeside</td>
+<td>31</td>
+</tr>
+<tr>
+<td>web_site</td>
+<td>28</td>
+</tr>
+<tr>
+<td>altar</td>
+<td>23</td>
+</tr>
+<tr>
+<td>palace</td>
+<td>23</td>
+</tr>
+<tr>
+<td>assault_rifle</td>
+<td>11</td>
+</tr>
+<tr>
+<td>sandbar</td>
+<td>9</td>
+</tr>
+<tr>
+<td>vault</td>
+<td>9</td>
+</tr>
+<tr>
+<td>revolver</td>
+<td>9</td>
+</tr>
+<tr>
+<td>castle</td>
+<td>8</td>
+</tr>
+<tr>
+<td>packet</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
@@ -591,7 +522,7 @@ report.py</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h1 id="The-Application-(Web-via-Flask)">The Application (Web via Flask)<a class="anchor-link" href="#The-Application-(Web-via-Flask)"></a></h1><p>The application needed for the console is structured this way:</p>
+<h1 id="The-Application-(Web-via-Flask)">The Application (Web via Flask)<a class="anchor-link" href="#The-Application-(Web-via-Flask)"></a></h1><p>The application structure is explained below:</p>
 
 <pre><code>root
  |---cbis/
@@ -629,7 +560,7 @@ report.py</p>
         |---search.py
         |---report.py
         |---report.py
-        |---requirements.venv.txt   # pip installation requirements</code></pre>
+        |---requirements.txt   # pip installation requirements</code></pre>
 
 </div>
 </div>
@@ -638,7 +569,7 @@ report.py</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Running-the-Flask-powered-web-application">Running the Flask-powered web application<a class="anchor-link" href="#Running-the-Flask-powered-web-application"></a></h2><p><em>This section discusses how to run the parser and visual tool from the web</em></p>
+<h2 id="2)-Running-the-Flask-powered-web-application">2) Running the Flask-powered web application<a class="anchor-link" href="#2)-Running-the-Flask-powered-web-application"></a></h2><p><em>This section discusses how to run the parser and visual tool from the web</em></p>
 <p>References:</p>
 <ul>
 <li><a href="https://www.pyimagesearch.com/2014/12/08/adding-web-interface-image-search-engine-flask/">https://www.pyimagesearch.com/2014/12/08/adding-web-interface-image-search-engine-flask/</a></li>
@@ -654,9 +585,12 @@ report.py</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Run the web application using this command from the terminal and from the virtual environment:
-<code>source ~/.bashrc</code>
-<del><code>source ~/cbis/bin/activate</code></del>
-<code>(base) cbis@cbis-VirtualBox:~/app/cbis$ python3 app.py</code></p>
+<code>source ~/.bashrc</code></p>
+<p>Run the application directly from the cbis/ directory
+cd</p>
+
+<pre><code>(base) cbis@cbis-VirtualBox:~/$ cd /home/cbis/app/cbis
+(base) cbis@cbis-VirtualBox:~/app/cbis$ python3 app.py</code></pre>
 <p>To run in debug mode:</p>
 <ul>
 <li><p>Unix:</p>
@@ -694,13 +628,14 @@ python3 app.py</code></pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h1 id="Pre-installed-Ubuntu-Virtualbox">Pre-installed Ubuntu Virtualbox<a class="anchor-link" href="#Pre-installed-Ubuntu-Virtualbox"></a></h1><p>To skip the installation process, this virtualbox image contains pre-installed dependencies needed to run the application.</p>
+<h1 id="Pre-installed-Ubuntu-Virtualbox">Pre-installed Ubuntu Virtualbox<a class="anchor-link" href="#Pre-installed-Ubuntu-Virtualbox"></a></h1><p><em>This section discusses how to run the ready-to-use version using virtualbox's ova file</em></p>
+<p>To skip the installation process, this virtualbox image contains pre-installed dependencies needed to run the application.</p>
 <h2 id="Instructions">Instructions<a class="anchor-link" href="#Instructions"></a></h2><ul>
-<li>Download the .ova file from the one-drive link, see <a target="_blank" href="/howtouse#Pre-requisites">Pre-requisites</a></li>
+<li>Download the .ova file from the download link (see <a target="_blank" href="/howtouse#Pre-requisites">Pre-requisites</a>) </li>
 <li>Import the .ova file (File -&gt; Import Appliance)</li>
 <li>Run/Start the Virtual Machine</li>
 </ul>
-<h3 id="Credentials">Credentials<a class="anchor-link" href="#Credentials"></a></h3><p>cbis/password123.</p>
+<h3 id="Credentials">Credentials<a class="anchor-link" href="#Credentials"></a></h3><p>cbis/password123</p>
 
 </div>
 </div>
@@ -738,7 +673,7 @@ python3 app.py</code></pre>
                     |---search.py
                     |---report.py
                     |---report.py
-                    |---requirements.venv.txt   # pip installation requirements</code></pre>
+                    |---requirements.txt   # pip installation requirements</code></pre>
 
 </div>
 </div>
@@ -749,7 +684,7 @@ python3 app.py</code></pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Update-Git">Update Git<a class="anchor-link" href="#Update-Git"></a></h2><p>Update the git repository in <code>/home/cbis/app/cbis</code> and make sure the code is updated: <code>git pull</code></p>
 
-<pre><code>(base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$ git pull
+<pre><code>(base) cbis@cbis-VirtualBox:~/app/cbis$ git pull
 Updating c343b06..806f6bc
 Fast-forward
  requirements.venv.txt   |  94 ++++++++--
@@ -761,19 +696,19 @@ Fast-forward
  6 files changed, 457 insertions(+), 217 deletions(-)
  create mode 100644 static/README.txt
 (base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
-<p>Run the flask application: <code>python3 app.py</code></p>
-<p>(base) cbis@cbis-VirtualBox:~/app/cbis$ python3 app.py</p>
-<ul>
-<li>Serving Flask app "app" (lazy loading)</li>
-<li>Environment: production
-WARNING: Do not use the development server in a production environment.
-Use a production WSGI server instead.</li>
-<li>Debug mode: on</li>
-<li>Running on <a href="http://0.0.0.0:5000/">http://0.0.0.0:5000/</a> (Press CTRL+C to quit)</li>
-<li>Restarting with stat</li>
-<li>Debugger is active!</li>
-<li>Debugger PIN: 535-525-500</li>
-</ul>
+<h2 id="Run-the-Flask-Web-Application">Run the Flask Web Application<a class="anchor-link" href="#Run-the-Flask-Web-Application"></a></h2><p>Run the flask application: <code>python3 app.py</code> from <code>home/cbis/app/cbis</code></p>
+
+<pre><code>(base) cbis@cbis-VirtualBox:~$ cd ~/app/cbis
+(base) cbis@cbis-VirtualBox:~/app/cbis$ python3 app.py
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 319-255-407</code></pre>
 
 </div>
 </div>
