@@ -73,7 +73,7 @@ $(function() {
         $("#file-info-label").html(title); //fname title
 
         //get the img url
-        var img_src = $(this).find('img').attr("src");
+        var img_src = decodeURIComponent ($(this).find('img').attr("src"));
         var pred_file = $(this).find('img').attr("data-file-pred");
         var exif_file = $(this).find('img').attr("data-file-exif");
 
@@ -140,9 +140,8 @@ $(function() {
             $("#parse-error").html("Nothing to parse. Tick at least one of the checkboxes above.");
         } else {
             $("#parse-error").html("");
-            //console.log("files=",parseMe)
             //delete previous results
-            $('#search-results-image-list').empty();
+            $('.item-thumbs').remove(); //joanna
 
             //TODO: make sure this is not empty
             var search_str = $("#search-list").val();
@@ -152,6 +151,7 @@ $(function() {
             } else {
                 $loading.show();
                 var data = JSON.stringify({files: parse_me, search_list: search_str});
+                //clear the content
                 search(data); //start search data using ajax
             }
         }

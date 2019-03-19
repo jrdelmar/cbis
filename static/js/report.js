@@ -68,7 +68,7 @@ function createBubbleChartFromUrl(params,selector){
         myBubbleChart(selector, data.children);
         $loading.hide();
 
-
+        $('.item-thumbs').remove(); //remove old images
         display_random_images(data.random_images)
 
     }

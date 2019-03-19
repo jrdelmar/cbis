@@ -749,10 +749,18 @@ python3 app.py</code></pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Update-Git">Update Git<a class="anchor-link" href="#Update-Git"></a></h2><p>Update the git repository in <code>/home/cbis/app/cbis</code> and make sure the code is updated: <code>git pull</code></p>
 
-<pre><code>(base) cbis@cbis-VirtualBox:~$ cd /home/cbis/app/cbis
-(base) cbis@cbis-VirtualBox:~/app/cbis$ git pull
-Already up to date.
-(base) cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
+<pre><code>(base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$ git pull
+Updating c343b06..806f6bc
+Fast-forward
+ requirements.venv.txt   |  94 ++++++++--
+ static/README.txt       |   4 +
+ static/js/main.js       |   8 +-
+ templates/howtouse.html | 554 ++++++++++++++++++++++++++++++++++++++--------------------
+ templates/index.html    |   8 +-
+ templates/report.html   |   6 +-
+ 6 files changed, 457 insertions(+), 217 deletions(-)
+ create mode 100644 static/README.txt
+(base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
 <p>Run the flask application: <code>python3 app.py</code></p>
 <p>(base) cbis@cbis-VirtualBox:~/app/cbis$ python3 app.py</p>
 <ul>
