@@ -3,7 +3,7 @@
 <hr style="border-top: 3px solid #1a082a;margin:0em" />
 <div style="width:100%;background-color:#;">
 <div style="display:table;width:100%">
-    <img src="static/img/logo_sm1.png" style="margin:10px;float:left" /> 
+    <img src="static/img/logo.png" style="margin:10px;float:left" /> 
     <span style="text-align:center;display:table-cell;vertical-align:top">
         <h1 style="color:#a03377">Content-Based Image Search</h1>
         <h2 style="color:#a03377">Using Pre-trained Models in Machine Learning as a Digital Forensic Tool</h2>
