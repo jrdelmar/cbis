@@ -10,13 +10,27 @@ import os
 from pathlib import Path
 import pandas as pd
 
-#parse the dataset directory folder
-#list of extensions supported
-#TODO:
-EXTENSIONS_SUPPORTED = ['CRDOWNLOAD','ICS','MSI','PART','TORRENT','BAK','TMP','C','CLASS','CPP','CS','DTD','FLA','H','JAVA','LUA','M','PL','PY','SH','SLN','SWIFT','VB','VCXPROJ','XCODEPROJ','BIN','CUE','DMG','ISO','MDF','TOAST','VCD','7Z','CBR','DEB','GZ','PKG','RAR','RPM','SITX','TARGZ','ZIP','ZIPX','HQX','MIM','UUE','CFG','INI','PRF','CAB','CPL','CUR','DESKTHEMEPACK','DLL','DMP','DRV','ICNS','ICO','LNK','SYS','FNT','FON','OTF','TTF','CRX','PLUGIN','ASP','ASPX','CER','CFM','CSR','CSS','DCR','HTM','HTML','JS','JSP','PHP','RSS','XHTML','GPX','KML','KMZ','DWG','DXF','B','DEM','GAM','NES','ROM','SAV','APK','APP','BAT','CGI','COM','EXE','GADGET','JAR','WSF','ACCDB','DB','DBF','MDB','PDB','SQL','XLR','XLS','XLSX','INDD','PCT','PDF','AI','EPS','PS','SVG','BMP','DDS','GIF','HEIC','JPG','PNG','PSD','PSPIMAGE','TGA','THM','TIF','TIFF','YUV','3DM','3DS','MAX','OBJ','3G2','3GP','ASF','AVI','FLV','M4V','MOV','MP4','MPG','RM','SRT','SWF','VOB','WMV','AIF','IFF','M3U','M4A','MID','MP3','MPA','WAV','WMA','CSV','DAT','GED','KEY','KEYCHAIN','PPS','PPT','PPTX','SDF','TAR','TAX2016','TAX2018','VCF','XML','DOC','DOCX','LOG','MSG','ODT','PAGES','RTF','TEX','TXT','WPD','WPS']
+# parse the dataset directory folder
+# list of extensions supported
+# TODO:
+EXTENSIONS_SUPPORTED = ['CRDOWNLOAD', 'ICS', 'MSI', 'PART', 'TORRENT', 'BAK', 'TMP', 'C', 'CLASS', 'CPP', 'CS', 'DTD',
+                        'FLA', 'H', 'JAVA', 'LUA', 'M', 'PL', 'PY', 'SH', 'SLN', 'SWIFT', 'VB', 'VCXPROJ', 'XCODEPROJ',
+                        'BIN', 'CUE', 'DMG', 'ISO', 'MDF', 'TOAST', 'VCD', '7Z', 'CBR', 'DEB', 'GZ', 'PKG', 'RAR',
+                        'RPM', 'SITX', 'TARGZ', 'ZIP', 'ZIPX', 'HQX', 'MIM', 'UUE', 'CFG', 'INI', 'PRF', 'CAB', 'CPL',
+                        'CUR', 'DESKTHEMEPACK', 'DLL', 'DMP', 'DRV', 'ICNS', 'ICO', 'LNK', 'SYS', 'FNT', 'FON', 'OTF',
+                        'TTF', 'CRX', 'PLUGIN', 'ASP', 'ASPX', 'CER', 'CFM', 'CSR', 'CSS', 'DCR', 'HTM', 'HTML', 'JS',
+                        'JSP', 'PHP', 'RSS', 'XHTML', 'GPX', 'KML', 'KMZ', 'DWG', 'DXF', 'B', 'DEM', 'GAM', 'NES',
+                        'ROM', 'SAV', 'APK', 'APP', 'BAT', 'CGI', 'COM', 'EXE', 'GADGET', 'JAR', 'WSF', 'ACCDB', 'DB',
+                        'DBF', 'MDB', 'PDB', 'SQL', 'XLR', 'XLS', 'XLSX', 'INDD', 'PCT', 'PDF', 'AI', 'EPS', 'PS',
+                        'SVG', 'BMP', 'DDS', 'GIF', 'HEIC', 'JPG', 'PNG', 'PSD', 'PSPIMAGE', 'TGA', 'THM', 'TIF',
+                        'TIFF', 'YUV', '3DM', '3DS', 'MAX', 'OBJ', '3G2', '3GP', 'ASF', 'AVI', 'FLV', 'M4V', 'MOV',
+                        'MP4', 'MPG', 'RM', 'SRT', 'SWF', 'VOB', 'WMV', 'AIF', 'IFF', 'M3U', 'M4A', 'MID', 'MP3', 'MPA',
+                        'WAV', 'WMA', 'CSV', 'DAT', 'GED', 'KEY', 'KEYCHAIN', 'PPS', 'PPT', 'PPTX', 'SDF', 'TAR',
+                        'TAX2016', 'TAX2018', 'VCF', 'XML', 'DOC', 'DOCX', 'LOG', 'MSG', 'ODT', 'PAGES', 'RTF', 'TEX',
+                        'TXT', 'WPD', 'WPS']
+
 
 def parse_dir():
-
     DATASET_DIR = "dataset"
     OUTPUT_DIR = "output"
     folders = os.listdir(DATASET_DIR)  # get folders only
@@ -62,8 +76,8 @@ def parse_dir():
     ts = get_timestamp()
     heatmap_file = os.path.join(OUTPUT_DIR, "file_extensions_" + ts + ".csv")
 
-    #show displayed file for download
-    #df.to_csv(heatmap_file, index=False)
+    # show displayed file for download
+    # df.to_csv(heatmap_file, index=False)
     log("[INFO] File created/saved: {}".format(heatmap_file), True)
 
     return arr_folders, arr_images, arr_values

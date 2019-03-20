@@ -13,33 +13,32 @@ from PIL.ExifTags import TAGS, GPSTAGS
 
 from pyimagesearch.utils import log, parse
 
-## Helper Functions ## 
+
+## Helper Functions ##
 def extract_exif(image_path, verbose):
-    log("[INFO] Extract exif information for {}..".format(image_path),verbose) 
-    
+    log("[INFO] Extract exif information for {}..".format(image_path), verbose)
+
     exif_data = get_exif_data(Image.open(image_path))
-    
-    #if exif_data is empty, just add resolution (width and height)
-    if(len(exif_data) == 0):
+
+    # if exif_data is empty, just add resolution (width and height)
+    if len(exif_data) == 0:
         exif_data['ExifImageWidth'], exif_data['ExifImageHeight'] = Image.open(image_path).size
     else:
         lat, lon = get_lat_lon(exif_data)
         exif_data['GPSLatitude'] = lat
         exif_data['GPSLongitude'] = lon
-    
-    #image full path instead of fname only
+
+    # image full path instead of fname only
     exif_data['FileName'] = image_path
-    
+
     return exif_data
 
 
-
 def parse_exif(file, image_path_list, verbose):
-    
-    log("[INFO] Parse exif from {}..".format(file),verbose) 
+    log("[INFO] Parse exif from {}..".format(file), verbose)
     exif_data_list = []
-    
-    if (len(image_path_list) > 0):
+
+    if len(image_path_list) > 0:
         # read/parse the file
         df = parse(file)
         image_dir = [convert_to_compare_path(x) for x in image_path_list]
@@ -50,8 +49,9 @@ def parse_exif(file, image_path_list, verbose):
 
     return exif_data_list
 
+
 def convert_to_compare_path(path):
-    return path.replace("\\","_").replace("/","_")
+    return path.replace("\\", "_").replace("/", "_")
 
 
 def get_exif_data(image):
@@ -73,12 +73,14 @@ def get_exif_data(image):
 
     return exif_data
 
+
 def _get_if_exist(data, key):
     if key in data:
         return data[key]
-		
+
     return None
-	
+
+
 def _convert_to_degress(value):
     """Helper function to convert the GPS coordinates stored in the EXIF to degress in float format"""
     d0 = value[0][0]
@@ -95,6 +97,7 @@ def _convert_to_degress(value):
 
     return d + (m / 60.0) + (s / 3600.0)
 
+
 def get_lat_lon(exif_data):
     """Returns the latitude and longitude, if available, from the provided exif_data (obtained through get_exif_data above)"""
     lat = None
@@ -110,7 +113,7 @@ def get_lat_lon(exif_data):
 
         if gps_latitude and gps_latitude_ref and gps_longitude and gps_longitude_ref:
             lat = _convert_to_degress(gps_latitude)
-            if gps_latitude_ref != "N":                     
+            if gps_latitude_ref != "N":
                 lat = 0 - lat
 
             lon = _convert_to_degress(gps_longitude)
