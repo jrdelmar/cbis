@@ -3,6 +3,7 @@ $(function() {
     //on-load do not display
     $("#section-chart-vis").hide();
     $("#section-chart-search").hide();
+    $("#section-chart-heatmap").hide();
 
 
     $('#graph-submit').click(function() {
@@ -40,8 +41,13 @@ $(function() {
 
             scrollToDiv($("#vis-title"));
             $("#vis").html(""); //clear content first
+            $("#heatmap").html(""); //clear content first
+
             createBubbleChartFromUrl(params, '#vis');
+
+
             $("#section-chart-vis").show();
+            $("#section-chart-heatmap").show();
 
 
         }
@@ -58,6 +64,7 @@ function scrollToDiv(target){
     }
 }
 
+//used in report screen
 function createBubbleChartFromUrl(params,selector){
 
     var myBubbleChart = bubbleChart();
@@ -69,7 +76,14 @@ function createBubbleChartFromUrl(params,selector){
         $loading.hide();
 
         $('.item-thumbs').remove(); //remove old images
-        display_random_images(data.random_images)
+
+        //display after render
+        createHeatMap();
+
+        //display after finishing
+        display_random_images(data.random_images);
+
+
 
     }
     //var params="folders=WEAPON-DB9_20190226_180745&pfiles=predictions_20190223_234941.csv&k=20"
@@ -84,6 +98,17 @@ function createBubbleChartFromData(data,selector){
     // setup the category buttons.
     setupButtons(myBubbleChart);
 }
+
+function createHeatMap(){
+
+    d3.json("/heatmap", function(data) {
+        //console.log(data.children.length)
+        v3heatmap(  data.children, '#heatmap');
+
+    });
+}
+
+
 
 /*
  * Sets up the layout buttons to allow for toggling between view modes.
@@ -126,4 +151,7 @@ function display_random_images(image_list){
     }
 
 
+
+
 }
+
