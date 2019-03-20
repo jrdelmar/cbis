@@ -226,7 +226,6 @@ class Loader:
         #
         # save( data, self.outputPath, filenames)
 
-
     def save_predictions(self):
         names = ["predictions", "exif", "unprocessed"]
         filenames = get_filenames_in_csv(self.outputPath, names, self.timestamp)

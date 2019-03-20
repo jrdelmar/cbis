@@ -9,8 +9,7 @@ import os
 from flask import Flask, render_template
 from flask import request, jsonify, send_from_directory
 
-from pyimagesearch.utils import log, get_filename_from_path, clean_filename
-from pyimagesearch.utils import get_foldername_from_path
+from pyimagesearch.utils import get_filename_from_path, clean_filename
 from pyimagesearch.searcher import Searcher, validate_search_items
 #from pyimagesearch.exif import parse_exif
 from pyimagesearch.map import create_map
@@ -18,15 +17,12 @@ from pyimagesearch.map import create_map
 from pyimagesearch.utils import log, parse
 from pyimagesearch.report import parse_for_report_graph, get_random_images
 from pyimagesearch.report import get_random_from_list
+from pyimagesearch.heatmap import parse_dir
 
 import operator
 from functools import reduce
 from PIL import Image
-     
-import pandas as pd
-import json
-   
-        
+
 #TODO: create a config directory
 INDEX_PATH = os.path.dirname(__file__)
 OUTPUT_FOLDER = os.path.join(INDEX_PATH, "output")
@@ -50,13 +46,9 @@ def index():
 def report():
     return render_template("report.html")
 
-@app.route("/howtouse")
-def howtouse():
-    return render_template("howtouse.html")
-
 @app.route("/help")
-def home():
-    return "Instructions here"
+def help():
+    return render_template("help.html")
 
 @app.route('/dataset/<path:filename>')
 def display_image(filename):
@@ -332,6 +324,7 @@ def visualise():
 
     return jsonify(results)
 
+"""
 @app.route("/report_data", methods=['GET'])
 def report_data():
     
@@ -354,8 +347,19 @@ def report_data():
     results ={'children': results}
 
     return jsonify(results)
+"""
 
-        
+@app.route("/heatmap", methods=['GET'])
+def heatmap():
+    arr_folders, arr_images, arr_values = parse_dir()
+    #d = {'x': arr_folders, 'y': arr_images, 'value': arr_values}
+    children = []
+
+    for i, f in enumerate(arr_folders):
+        children.append({'x': f, 'y': arr_images[i], 'value': arr_values[i]})
+
+    return jsonify({'children': children})
+
     
 def is_valid_gps(lat, lon):
     valid = True
@@ -427,6 +431,8 @@ def search_predictions (pred_file, exif_file, search_list, top_k, threshold, ver
     return _image_path_list, _image_list
         
     
+
+
 
 
 

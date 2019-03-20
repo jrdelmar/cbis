@@ -1,7 +1,98 @@
 {% extends "_base.html" %}
-
 {% block content %}
-<!-- instructions should be added here that prediction should be completed before running this file -->
+
+<!-- heatmap here -->
+ <style>
+  /* Inspired from https://bl.ocks.org/Bl3f/cdb5ad854b376765fa99 and http://bl.ocks.org/tjdecke/5558084 */
+  /* disable text selection */
+  svg *::selection {
+     background : transparent;
+  }
+
+  svg *::-moz-selection {
+     background:transparent;
+  }
+
+  svg *::-webkit-selection {
+     background:transparent;
+  }
+  rect.selection {
+    stroke          : #333;
+    stroke-dasharray: 4px;
+    stroke-opacity  : 0.5;
+    fill            : transparent;
+  }
+
+  rect.cell-border {
+    stroke: #eee;
+    stroke-width:0.3px;
+  }
+
+  rect.cell-selected {
+    stroke: rgb(51,102,153);
+    stroke-width:0.5px;
+  }
+
+  rect.cell-hover {
+    stroke: #F00;
+    stroke-width:0.3px;
+  }
+
+  text.mono {
+    font-size: 9pt;
+    font-family: Consolas, courier;
+    fill: #aaa;
+  }
+
+  text.text-selected {
+    fill: #000;
+  }
+
+  text.text-highlight {
+    fill: #c00;
+  }
+  text.text-hover {
+    fill: #00C;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+
+  .axis text {
+      font-family: sans-serif;
+      font-size: 11px;
+  }
+
+  #tooltip {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+  }
+
+  #tooltip.hidden {
+    display: none;
+  }
+
+  #tooltip p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+  }
+</style>
 
 <!-- section featured -->
 <section id="featured">
@@ -58,10 +149,11 @@
   <div class="row">
     <div class="span12">
       <h2 id="vis-title"><strong>Data <span class="colored">Visualisation</span></strong></h2>
+      <h4><strong><span class="colored">Bubble</span> Graph of <span class="colored">Detected</span> Labels</strong></h4>
       <p>This section provides the count of all the object images and their corresponding predicted labels based on the Top-20 predictions.
       </p>
       <div class="clearfix">&nbsp</div>
-      <h4><span class="colored">Predicted</span> Labels for <span class="colored">Top-20 Predictions</span></h4>
+      <!--<h5><span class="colored">Predicted</span> Labels for <span class="colored">Top-20 Predictions</span></h5>-->
         <p class="text-center" id="loading"><img alt="" src="static/img/ajax-loader.gif" /></p>
       <section id="section-chart-vis">
         <ul id="toolbar">
@@ -69,6 +161,22 @@
           <li href="#" id="category" class="chart-links">By Category</li>
         </ul>
         <div id="vis"></div>
+      </section>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+  <div class="row">
+    <div class="span12">
+      <h3><strong><span class="colored">All</span> File <span class="colored">Extensions</span></strong></h3>
+      <p>This section provides the count of <strong>all files in the dataset/ directory based on file extensions</strong></p>
+      <div class="clearfix">&nbsp</div>
+      <section id="section-chart-heatmap">
+
+        <div id="heatmap"></div>
       </section>
     </div>
   </div>
@@ -92,4 +200,8 @@
   </div>
   </div>
 </section>
+
+
+<div id="tooltip" class="hidden"><p><span id="value"></span></p></div>
+
 {% endblock %}

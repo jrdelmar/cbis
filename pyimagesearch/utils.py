@@ -70,7 +70,8 @@ def write_to_log(message, verbose=False):
     
 #read the file and return df object
 def parse(file):
-    return pd.read_csv(file,header=0)    
+    return pd.read_csv(file,header=0)
+
 
 
 # data should be dataframe, always in verbose mode    
