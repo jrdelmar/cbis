@@ -5,9 +5,14 @@ $(function() {
     $error = $("#error");
     $searching = $(".searching");
 
+
     $loading.show();
     $error.hide();
     $searching.hide();
+
+    $('#imagenet-list-wrapper').hide();
+    $('#find-imagenet-rollup').hide();
+
 
     //config - some fixed values
     const TOP_K_PREDICTIONS_SIDEBAR = 5; //top-5 results only, dont clutter my sidebar
@@ -44,22 +49,22 @@ $(function() {
         error: function (error) {
             console.log(error);
             // append to dom
-            $("#error").append()
+            //$("#error").append()
         }
     });
 
     $loading.hide();
 
-    //DEBUG: -----------------------------
-    var search_str = "gun,church, scuba diver, water";
-    var parse_me = {
-        'WEAPON-DB9_20190226_180745': {
-            'predictions': ["predictions_20190223_234941.csv"],
-            'exif': ["exif_20190223_234941.csv"]
-        }
-    }
-    var data = JSON.stringify({files: parse_me, search_list: search_str})
-    //search(data);
+    // //DEBUG: -----------------------------
+    // var search_str = "gun,church, scuba diver, water";
+    // var parse_me = {
+    //     'WEAPON-DB9_20190226_180745': {
+    //         'predictions': ["predictions_20190223_234941.csv"],
+    //         'exif': ["exif_20190223_234941.csv"]
+    //     }
+    // }
+    // var data = JSON.stringify({files: parse_me, search_list: search_str, search_exif:search_exif})
+    // //search(data);
 
     //dynamic links
     //$(".item").live("click", function(e) {
@@ -116,7 +121,7 @@ $(function() {
             error: function (error) {
                 console.log(error);
                 // append to dom
-                $("#error").append()
+                //$("#error").append()
             }
         });
 
@@ -141,16 +146,18 @@ $(function() {
         } else {
             $("#parse-error").html("");
             //delete previous results
-            $('.item-thumbs').remove(); //joanna
+            $('.item-thumbs').remove();
 
             //TODO: make sure this is not empty
             var search_str = $("#search-list").val();
+            var search_exif = $("#search-exif").val();
+
             if(isEmpty(search_str)){
                 //alert("TODO: Error-handling!")
                 $("#search-error").html("You get what you give. There is nothing to parse, so returning nothing.");
             } else {
                 $loading.show();
-                var data = JSON.stringify({files: parse_me, search_list: search_str});
+                var data = JSON.stringify({files: parse_me, search_list: search_str, search_exif: search_exif});
                 //clear the content
                 search(data); //start search data using ajax
             }
@@ -161,6 +168,70 @@ $(function() {
     $('.size-change').click(function (e)  {
         $('#content img').css({'max-width': $(this).attr("data-id")})
     });
+
+    //load the list of imagenet classes
+    $.ajax({
+            type: "GET",
+            url: "/imagenet",
+            contentType: 'application/json',
+            // handle success
+            success: function (data) {
+                 $('.typeahead').typeahead({source: data})
+            },
+            // handle error
+            error: function (error) {
+                console.log(error);
+            }
+        });
+
+    // var subjects = ['PHP', 'MySQL', 'SQL', 'PostgreSQL', 'HTML', 'CSS', 'HTML5', 'CSS3', 'JSON'];
+    // $('.typeahead').typeahead({source: subjects})
+
+
+
+
+
+
+    $('#find-imagenet-rollup').click(function(e){
+        e.preventDefault();
+        $('#find-imagenet-rollup').toggle();
+        $('#imagenet-list-wrapper').hide()
+    });
+
+    //when the user clicks on the display list of imagenet classes
+    $('.find-imagenet').click(function(e){  //joanna
+
+        e.preventDefault();
+
+        $('#imagenet-list-wrapper').toggle()
+        $('#find-imagenet-rollup').toggle()
+
+
+        var $el = $('#imagenet-list')
+        //only call the first time
+        if ($el.html() === ""){
+            $.ajax({
+                type: "GET",
+                url: "/imagenet",
+                contentType: 'application/json',
+                // handle success
+                success: function (data) {
+                    for (var k in data){
+                        $el.append(data[k] + " ")
+                    }
+                },
+                // handle error
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        }
+
+
+
+
+    });
+
 
 
 });//on-load event
@@ -378,7 +449,7 @@ function search(data){
         error: function (error) {
             console.log(error);
             // append to dom
-            $("#error").append()
+            //$("#error").append()
         },
         //oncomplete
         complete: function (){

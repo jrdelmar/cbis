@@ -22,10 +22,10 @@ EXTENSIONS_SUPPORTED = ['CRDOWNLOAD', 'ICS', 'MSI', 'PART', 'TORRENT', 'BAK', 'T
                         'JSP', 'PHP', 'RSS', 'XHTML', 'GPX', 'KML', 'KMZ', 'DWG', 'DXF', 'B', 'DEM', 'GAM', 'NES',
                         'ROM', 'SAV', 'APK', 'APP', 'BAT', 'CGI', 'COM', 'EXE', 'GADGET', 'JAR', 'WSF', 'ACCDB', 'DB',
                         'DBF', 'MDB', 'PDB', 'SQL', 'XLR', 'XLS', 'XLSX', 'INDD', 'PCT', 'PDF', 'AI', 'EPS', 'PS',
-                        'SVG', 'BMP', 'DDS', 'GIF', 'HEIC', 'JPG', 'PNG', 'PSD', 'PSPIMAGE', 'TGA', 'THM', 'TIF',
-                        'TIFF', 'YUV', '3DM', '3DS', 'MAX', 'OBJ', '3G2', '3GP', 'ASF', 'AVI', 'FLV', 'M4V', 'MOV',
-                        'MP4', 'MPG', 'RM', 'SRT', 'SWF', 'VOB', 'WMV', 'AIF', 'IFF', 'M3U', 'M4A', 'MID', 'MP3', 'MPA',
-                        'WAV', 'WMA', 'CSV', 'DAT', 'GED', 'KEY', 'KEYCHAIN', 'PPS', 'PPT', 'PPTX', 'SDF', 'TAR',
+                        'SVG', 'BMP', 'DDS', 'GIF', 'HEIC', 'JPG', 'JPEG', 'PNG', 'PSD', 'PSPIMAGE', 'TGA', 'THM',
+                        'TIF', 'TIFF', 'YUV', '3DM', '3DS', 'MAX', 'OBJ', '3G2', '3GP', 'ASF', 'AVI', 'FLV', 'M4V',
+                        'MOV', 'MP4', 'MPG', 'RM', 'SRT', 'SWF', 'VOB', 'WMV', 'AIF', 'IFF', 'M3U', 'M4A', 'MID', 'MP3',
+                        'MPA', 'WAV', 'WMA', 'CSV', 'DAT', 'GED', 'KEY', 'KEYCHAIN', 'PPS', 'PPT', 'PPTX', 'SDF', 'TAR',
                         'TAX2016', 'TAX2018', 'VCF', 'XML', 'DOC', 'DOCX', 'LOG', 'MSG', 'ODT', 'PAGES', 'RTF', 'TEX',
                         'TXT', 'WPD', 'WPS']
 

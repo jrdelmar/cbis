@@ -17,3 +17,8 @@
 .item .img-active{
     border:3px solid #ee5f5b;
 }
+
+#section-chart-heatmap {
+    max-height: 650px;
+    overflow-y: scroll;
+}

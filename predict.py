@@ -5,10 +5,9 @@ Created on Wed Feb 20 21:03:21 2019
 Description:
 """
 import argparse
-import os
-
 from pyimagesearch.loader import Loader
 from pyimagesearch.utils import log, get_timestamp, get_output_directory
+from pyimagesearch.config import *
 
 
 def predict():
@@ -40,7 +39,7 @@ def predict():
 
     model = args["model"]
     img_path = args["image_path"]
-    folder_out = args["output_folder"]
+    folder_out = args["output_folder"]  # if empty it will take the dataset foldername
     verbose = False
     if args["verbose"]:
         verbose = True
@@ -51,14 +50,13 @@ def predict():
     log(s, always_verbose)  # always display
 
     log("[INFO] Starting to load and index the path {} ...".format(img_path), always_verbose)
-    index_path = os.path.dirname(__file__)
 
     # define the folder name
     ts = get_timestamp()
-    output_dir = get_output_directory(index_path, ts, img_path, folder_out)
+    output_dir = get_output_directory(ts, img_path, folder_out)
 
     # load the model and index the results
-    loader = Loader(index_path=index_path,
+    loader = Loader(index_path=INDEX_PATH,
                     output=output_dir,
                     timestamp=ts,
                     verbose=verbose)

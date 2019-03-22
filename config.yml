@@ -1,0 +1,15 @@
+# folder names in cbis/
+folders:
+  output: output
+  dataset: dataset
+  maps: maps
+
+
+files:
+  output_filename: [prediction]
+  allowed_filenames:  [predictions_, exif_]  # the file pattern searched in output/ folder for screen display
+
+
+imagenet:
+  guns: [revolver, assault_rifle, rifle, muzzle]  # => see models/imagenet_class_index.json for the full list
+  list_classes_json: models/imagenet_class_index.json

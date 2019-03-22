@@ -11,15 +11,14 @@ Description: The searcher class performs the following actions
 """
 from pyimagesearch.utils import log, parse, get_filename_from_path
 import numpy as np
+from pyimagesearch.config import *
 
 
 class Searcher:
-    def __init__(self, indexPath, verbose=False):
+    def __init__(self, index_path, verbose=False):
         # store the index path
-        self.indexPath = indexPath
+        self.index_path = index_path
         self.verbose = verbose
-
-        self.imagenet_guns = ["revolver", "assault_rifle", "rifle", "muzzle"]  # => see 1_baselining-pre-trained-models
 
     # Search gun function works by taking the classification from imagenet
     # Based on initial testing, the following are the descriptions of imagenet 
@@ -31,14 +30,11 @@ class Searcher:
 
         # read/parse the file
         df = parse(file)
-        gun_list = self._search_gun(df, file,
-                                    top_k, probability_threshold)
+        gun_list = self._search_gun(df, file, top_k, probability_threshold)
 
         return gun_list
 
     def _search_gun(self, df, file, top_k, probability_threshold):
-
-        imagenet_guns = self.imagenet_guns
 
         # TODO: ensure the rows are sorted
         gun_list = []
@@ -49,8 +45,8 @@ class Searcher:
                 for p in range(2, top_k + 2):  # columns start from 2 onwards
                     pred_arr = parse_prediction(row[p])
 
-                    found_it = find_in_list(pred_arr[1], imagenet_guns,
-                                           pred_arr[2], probability_threshold)
+                    found_it = find_in_list(pred_arr[1], IMAGENET_GUNS,
+                                            pred_arr[2], probability_threshold)
 
                     if found_it:
                         label = "gun"
@@ -60,29 +56,28 @@ class Searcher:
 
     # find objects based on multiple search criteria and return with the list
     # use the find command, not necessarily the exact word
-    # def search(df,findMeList, top_k = 20, probability_threshold=None):
-    def search_list(self, file, findMeList, top_k=20, probability_threshold=0.50):
+    # def search(df,find_me_list, top_k = 20, probability_threshold=None):
+    def search_list(self, file, find_me_list, top_k=20, probability_threshold=0.50):
         log("[INFO] Start parsing prediction file {}".format(file), self.verbose)
 
         # read/parse the file
         df = parse(file)
 
         gun_list = []
-        if is_gun_in_list(findMeList):
+        if is_gun_in_list(find_me_list):
             # if there is a gun in the list, reuse gun search function
             gun_list = self._search_gun(df, file,
                                         top_k, probability_threshold)
 
         # no-guns
-        findMeList = extract_non_gun_items(findMeList)
+        find_me_list = extract_non_gun_items(find_me_list)
         img_list = []
-        if findMeList:  # not empty
-            img_list = self._search_list(df, file, findMeList,
-                                         top_k, probability_threshold)
+        if find_me_list:  # not empty
+            img_list = self._search_list(df, find_me_list, top_k, probability_threshold)
 
         return gun_list + img_list
 
-    def _search_list(self, df, file, findMeList, top_k, probability_threshold):
+    def _search_list(self, df, find_me_list, top_k, probability_threshold):
         img_list = []
         for idx, row in df.iterrows():
             filename = row[1]
@@ -91,16 +86,17 @@ class Searcher:
                 for p in range(2, top_k + 2):  # columns start from 2 onwards
 
                     pred_arr = parse_prediction(row[p])
-                    for findMe in findMeList:
+                    for find_me in find_me_list:
 
-                        found_it = find_string(pred_arr[1], findMe,
-                                              pred_arr[2], probability_threshold)
+                        found_it = find_string(pred_arr[1], find_me,
+                                               pred_arr[2], probability_threshold)
 
                         if found_it:
-                            label = findMe
+                            label = find_me
                             img_list.append([filename, pred_arr[1], pred_arr[2], label])
                             break
         return img_list
+
 
     # display all the labels
     def display_predictions(self, file, img_filename):
@@ -161,9 +157,9 @@ class Searcher:
 
 # pred_arr[2]  probability
 # pred_arr[1] source_string       
-def find_string(source_string, findMe, probability, threshold):
+def find_string(source_string, find_me, probability, threshold):
     found_it = False
-    if source_string.find(findMe) >= 0:
+    if source_string.find(find_me) >= 0:
         found_it = False  # verify only when there is no threshold
         if threshold == None:
             found_it = True
@@ -176,9 +172,9 @@ def find_string(source_string, findMe, probability, threshold):
     return found_it
 
 
-def find_in_list(source_string, findMeList, probability, threshold):
+def find_in_list(source_string, find_me_list, probability, threshold):
     found_it = False
-    if source_string in findMeList:
+    if source_string in find_me_list:
         found_it = False  # verify only when there is no threshold
         if threshold == None:
             found_it = True
@@ -205,10 +201,16 @@ def is_gun_in_list(a):
     return is_gun
 
 
-##TODO: Security breach
 def parse_prediction(pred):
-    pred_arr = eval(pred)
-    return pred_arr
+    arr = []
+    try:
+        pred_arr = eval(pred, {"__builtins__": None})
+        if isinstance(pred_arr, list):
+            arr = pred_arr
+    except:
+        log("[ERROR] Prediction file parsing error. File is does not follow the format.")
+
+    return arr
 
 
 def isvalid_prediction(row):
@@ -229,3 +231,22 @@ def validate_search_items(search_list):
         mode = 2  # others
 
     return mode, search_list
+
+
+def search_exif_from_list(exif_file, search_str, _image_path_list, _image_list):
+    df = parse(exif_file)
+
+    _search = search_str.replace(",", "|")
+    # concatenate into a new column and search from there
+    df['SearchMe'] = df['Make'] + ' ' + df['Model'] + df['Software'] + df['DateTime'].replace(":","-")
+    df_exif = df[df['SearchMe'].str.contains(_search, case=False, na=False)]['FileName']  # do not include nan values
+    # get the filenames
+    _image_path_list = df_exif[df_exif.isin(_image_path_list)]
+
+    new_list = []
+    for img_list in _image_list:
+        # clean up to make sure strings can be compared, some dashes issue, better to just remove
+        if img_list[0].replace("\\", "") in list(map(lambda x: x.replace("\\", ""), df_exif)):
+            new_list.append(img_list)
+
+    return _image_path_list, new_list

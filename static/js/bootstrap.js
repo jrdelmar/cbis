@@ -1871,8 +1871,21 @@
 
     constructor: Typeahead
 
+      //modified by joanna, dont remove all the contents, just replace the last
   , select: function () {
       var val = this.$menu.find('.active').attr('data-value')
+      if (this.$element.val()){
+          var val_old = this.$element.val()
+          var arr = val_old.split(',');
+          arr.pop();
+          if( arr.length > 0 ){
+              val_old = arr.join();
+              val = val_old + "," + val
+          }
+      }
+
+      //only replace the last
+      //val = val_old + val
       this.$element
         .val(this.updater(val))
         .change()
@@ -1906,6 +1919,7 @@
       return this
     }
 
+
   , lookup: function (event) {
       var items
 
@@ -1913,6 +1927,12 @@
 
       if (!this.query || this.query.length < this.options.minLength) {
         return this.shown ? this.hide() : this
+      }
+
+      //modified by joanna to get the comma delimited values and not the full string
+      if (this.query){
+          var max = this.query.split(',').length
+          this.query = this.query.split(',')[max-1]
       }
 
       items = $.isFunction(this.source) ? this.source(this.query, $.proxy(this.process, this)) : this.source

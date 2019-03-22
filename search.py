@@ -12,8 +12,6 @@ from pyimagesearch.searcher import Searcher, validate_search_items
 from pyimagesearch.exif import parse_exif
 
 
-# TODO: Unit test
-
 def search():
     # --- argument list --- #
     # construct the argument parse and parse the arguments

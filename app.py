@@ -5,29 +5,22 @@ Created on Wed Feb 20 11:23:58 2019
 Description:
     References: http://flask.pocoo.org/docs/1.0/patterns/fileuploads/
 """
-import os
 from flask import Flask, render_template
 from flask import request, jsonify, send_from_directory
 
 from pyimagesearch.utils import get_filename_from_path, clean_filename
-from pyimagesearch.searcher import Searcher, validate_search_items
+from pyimagesearch.searcher import Searcher, validate_search_items, search_exif_from_list
 from pyimagesearch.map import create_map
 from pyimagesearch.utils import log, parse
 from pyimagesearch.report import parse_for_report_graph, get_random_images
 from pyimagesearch.report import get_random_from_list
 from pyimagesearch.heatmap import parse_dir
+from pyimagesearch.config import *
 
 import operator
 from functools import reduce
 from PIL import Image
-
-# TODO: create a config directory
-INDEX_PATH = os.path.dirname(__file__)
-OUTPUT_FOLDER = os.path.join(INDEX_PATH, "output")
-ALLOWED_EXTENSIONS = ['csv']
-ALLOWED_FILENAMES = ['predictions_', 'exif_']
-DATASET_FOLDER = os.path.join(INDEX_PATH, "dataset")
-MAPS_FOLDER = os.path.join(INDEX_PATH, "maps")
+import json
 
 app = Flask(__name__)
 app.config['OUTPUT_FOLDER'] = OUTPUT_FOLDER
@@ -106,14 +99,13 @@ def display():
         exif_file = request.form.get('exif_file')
 
         # search for the predictions..
-        indexPath = os.path.dirname(__file__)
-        pred_file = os.path.join(indexPath, pred_file)
-        exif_file = os.path.join(indexPath, exif_file)
+        pred_file = os.path.join(INDEX_PATH, pred_file)
+        exif_file = os.path.join(INDEX_PATH, exif_file)
 
         # print('pred_file',pred_file)
         # print('exif_file',exif_file)
 
-        s = Searcher(indexPath, verbose)
+        s = Searcher(INDEX_PATH, verbose)
         predictions = s.display_predictions(pred_file, img_src)
 
         exif_info, gps_info = s.display_exif(exif_file, img_src)
@@ -156,6 +148,7 @@ def search():
         # get the argument list
         json = request.get_json()
         search_list = json['search_list']
+        search_exif = json['search_exif']
 
         image_list = []
         image_path_list = []
@@ -183,7 +176,7 @@ def search():
 
             # image_path_list, image_list
             a, b = search_predictions(pred_file, exif_file,
-                                      search_list, top_k, threshold, verbose)
+                                      search_list, search_exif,  top_k, threshold)
 
             image_path_list.append(a)
             image_list.append(b)
@@ -231,11 +224,25 @@ def search():
 # def report_data1():
 #    return jsonify(get_report_data())
 
+# get the list of imagenet classes
+@app.route("/imagenet", methods=['GET'])
+def imagenet():
+    # get the class list
+    imagenet_classes = []
+    print(IMAGENET_LIST_CLASSES_JSON)
+    with open(IMAGENET_LIST_CLASSES_JSON) as j:
+        data = json.load(j)
+
+    for d in data:
+        # print(data[d][1])
+        imagenet_classes.append(data[d][1])
+
+    return jsonify(sorted(imagenet_classes))
+
 
 # visualise all files
 @app.route("/visualise", methods=['GET', 'POST'])
 def visualise():
-    verbose = False
     threshold = None
     top_k = 20
     if request.method == "POST":  # not working
@@ -387,14 +394,13 @@ def find_files(files, folder_name, f, p, e):
     return files
 
 
-def search_predictions(pred_file, exif_file, search_list, top_k, threshold, verbose):
+def search_predictions(pred_file, exif_file, search_list, search_exif, top_k, threshold):
     verbose = True
     always_verbose = True
 
     log("[INFO][FLASK] Starting to load prediction file {} and exif file {} ...".format(pred_file, exif_file),
         always_verbose)
-    indexPath = os.path.dirname(__file__)
-    s = Searcher(indexPath, verbose)
+    s = Searcher(INDEX_PATH, verbose)
     _image_list = []
     _image_path_list = []
 
@@ -420,9 +426,14 @@ def search_predictions(pred_file, exif_file, search_list, top_k, threshold, verb
 
     log("[INFO][FLASK] Total images found: {}".format(len(_image_path_list)), always_verbose)
 
+    # if the exif information is found, search for the info
+    if search_exif:
+        _image_path_list, _image_list = search_exif_from_list(exif_file, search_exif, _image_path_list, _image_list)
+
     # image_path_list => only images
     # image_list => predictions top based on search items
     return _image_path_list, _image_list
+
 
 
 # run!

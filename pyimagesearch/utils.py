@@ -9,7 +9,7 @@ import re
 import pandas as pd
 from datetime import datetime
 import imghdr
-
+from pyimagesearch.config import *
 
 def is_image(img_path):
     res = False
@@ -21,22 +21,22 @@ def is_image(img_path):
 
 
 # files with timestamp
-def get_filenames_in_csv(indexPath, names, ts):
-    return list(map(lambda name: os.path.join(indexPath, name + "_" + ts + ".csv"), names))
+def get_filenames_in_csv(index_path, names, ts):
+    return list(map(lambda name: os.path.join(index_path, name + "_" + ts + ".csv"), names))
 
 
 def get_timestamp():
     return datetime.now().strftime("%Y%m%d_%H%M%S")
 
 
-def get_output_directory(indexPath, ts, img_path, folder_out):
+def get_output_directory( ts, img_path, folder_out):
     if folder_out == None:
         l = os.path.normpath(img_path).split(os.sep)
         folder_out = l[len(l) - 1]
     else:
         folder_out = filter_allowed_characters(folder_out)
 
-    return os.path.join(indexPath, "output", folder_out + "_" + ts)
+    return os.path.join(OUTPUT_FOLDER, folder_out + "_" + ts)
 
 
 def get_key_of_max_value(l):
@@ -52,10 +52,10 @@ def log(message, verbose=False):
 
 
 def write_to_log(message, verbose=False):
-    indexPath = os.path.dirname(__file__)  # utils path
+    index_path = os.path.dirname(__file__)  # utils path
     filename = "cbis" + datetime.now().strftime("-%Y%m%d") + ".log"
-    filename = os.path.join(indexPath, "..", "output", filename)
-    # filename = os.path.join(indexPath,"..","output","console",filename) #TODO: debug
+    filename = os.path.join(index_path, "..", "output", filename)
+    # filename = os.path.join(index_path,"..","output","console",filename) #TODO: debug
 
     with open(filename, 'a') as f:
         if f.tell() == 0:
@@ -102,6 +102,6 @@ def get_foldername_from_path(path):
     return l[len(l) - 2]
 
 
-def clean_filename(file, findMe):
-    idx = file.find(findMe)  # find the first instance of 'dataset' folder
+def clean_filename(file, find_me):
+    idx = file.find(find_me)  # find the first instance of 'dataset' folder
     return file[idx:]

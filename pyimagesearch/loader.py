@@ -36,10 +36,10 @@ from pyimagesearch.utils import is_image, get_key_of_max_value
 # * https://gogul09.github.io/software/flower-recognition-deep-learning
 # * https://keras.io/applications/
 class Loader:
-    def __init__(self, indexPath, output, timestamp, verbose=False):
+    def __init__(self, index_path, output, timestamp, verbose=False):
         # store the index path
-        self.indexPath = indexPath
-        self.outputPath = output
+        self.index_path = index_path
+        self.output_path = output
         self.verbose = verbose
         self.timestamp = timestamp
 
@@ -57,29 +57,29 @@ class Loader:
         # and use a different image processing function
         # if args["model"] in ("inception", "xception"):
 
-        inputShape = (299, 299)
+        input_shape = (299, 299)
         preprocess = preprocess_input
 
         # initialize the input image shape (224x224 pixels) along with
         # the pre-processing function (this might need to be changed
         # based on which model we use to classify our image)
         if model not in ("inception", "xception"):
-            inputShape = (224, 224)
+            input_shape = (224, 224)
             preprocess = imagenet_utils.preprocess_input
 
-        return inputShape, preprocess
+        return input_shape, preprocess
 
     def _load_image(self, image_path):
         # load the input image using the Keras helper utility while ensuring
-        # the image is resized to `inputShape`, the required input dimensions
+        # the image is resized to `input_shape`, the required input dimensions
         # for the ImageNet pre-trained network
         # log("[INFO] loading and pre-processing image...")
-        image = load_img(image_path, target_size=self.inputShape)
+        image = load_img(image_path, target_size=self.input_shape)
         image = img_to_array(image)
 
         # our input image is now represented as a NumPy array of shape
-        # (inputShape[0], inputShape[1], 3) however we need to expand the
-        # dimension by making the shape (1, inputShape[0], inputShape[1], 3)
+        # (input_shape[0], input_shape[1], 3) however we need to expand the
+        # dimension by making the shape (1, input_shape[0], input_shape[1], 3)
         # so we can pass it through thenetwork
         image = np.expand_dims(image, axis=0)
 
@@ -100,7 +100,7 @@ class Loader:
     # load the image path
     def load(self, image_path, model="inception"):
 
-        indexPath = self.indexPath
+        index_path = self.index_path
 
         # ----- load model -----
         # define a dictionary that maps model names to their classes
@@ -111,16 +111,16 @@ class Loader:
             "resnet": ResNet50}
 
         weights = {
-            "vgg16": os.path.join(indexPath, 'models', 'vgg16_weights_tf_dim_ordering_tf_kernels.h5'),
-            "inception": os.path.join(indexPath, 'models', 'inception_v3_weights_tf_dim_ordering_tf_kernels.h5'),
-            "xception": os.path.join(indexPath, 'models', 'xception_weights_tf_dim_ordering_tf_kernels.h5'),
+            "vgg16": os.path.join(index_path, 'models', 'vgg16_weights_tf_dim_ordering_tf_kernels.h5'),
+            "inception": os.path.join(index_path, 'models', 'inception_v3_weights_tf_dim_ordering_tf_kernels.h5'),
+            "xception": os.path.join(index_path, 'models', 'xception_weights_tf_dim_ordering_tf_kernels.h5'),
         # TensorFlow ONLY
-            "resnet": os.path.join(indexPath, 'models', 'resnet50_weights_tf_dim_ordering_tf_kernels.h5')}
+            "resnet": os.path.join(index_path, 'models', 'resnet50_weights_tf_dim_ordering_tf_kernels.h5')}
 
         self.model = models[model]
         self.weight = weights[model]
 
-        self.inputShape, self.preprocess = self._preprocess_data(model)
+        self.input_shape, self.preprocess = self._preprocess_data(model)
 
         log("[INFO] {} model used.".format(model), self.verbose)
         log("[INFO] Weight {} used".format(self.weight), self.verbose)
@@ -220,11 +220,11 @@ class Loader:
         # transfered to another method
         # names =  ["predictions", "exif", "unprocessed"]
         #
-        # filenames = get_filenames_in_csv(self.outputPath, names, self.timestamp)
+        # filenames = get_filenames_in_csv(self.output_path, names, self.timestamp)
         #
-        # save( data, self.outputPath, filenames)
+        # save( data, self.output_path, filenames)
 
     def save_predictions(self):
         names = ["predictions", "exif", "unprocessed"]
-        filenames = get_filenames_in_csv(self.outputPath, names, self.timestamp)
-        save(self.data, self.outputPath, filenames)
+        filenames = get_filenames_in_csv(self.output_path, names, self.timestamp)
+        save(self.data, self.output_path, filenames)

@@ -1,10 +1,11 @@
 /*
-//move this to report after
-$(function() {
-    $('#graph-submit2').click(function() {
-    createHeatMap()
-});
-}); //end of $(function()
+This file uses d3 version 3. There is no time to rewrite to version 4.
+Since this project uses version 4 for the bubble graph, the library heatmap/d3.v3.js has been changed to d3v3 variable.
+
+Inspired from:
+http://bl.ocks.org/tjdecke/5558084
+http://bl.ocks.org/ianyfchang/8119685
+https://bl.ocks.org/Bl3f/cdb5ad854b376765fa99
 */
 function v3heatmap(rawData, selector) {
     var itemSize = 22, cellSize = itemSize - 1
