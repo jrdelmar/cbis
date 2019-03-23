@@ -10,6 +10,10 @@ $(function() {
     $error.hide();
     $searching.hide();
 
+    $('.prevent-default').live("click", function(e) {
+        e.preventDefault();
+    });
+
     $('#imagenet-list-wrapper').hide();
     $('#find-imagenet-rollup').hide();
 
@@ -414,13 +418,16 @@ function search(data){
                 //console.log(file, filename, file.replace(filename, encodeURI(filename)))
                 var encodedFile = file.replace(filename, encodeURI(filename))
 
-                var icons = '<div class="text-left clear-marginbot marginbot10"><span class="file-info show_info">' +
-                    '<a href="#" title="' + caption + '"><i class="icon-file icon-circled icon-bglight icon"></i></a></span> '
-                    + '<span><a class="download" href="' + encodedFile + '" title="Download '+ filename + '"><i class="icon-cloud-download icon-circled icon-bglight icon"></i></a></span></div>'
-                var content = '<li class="item-thumbs span2 design" data-id="' + data_id + '" data-type="'+ search_label +'">'
+                var icons = '<div class="text-left clear-marginbot marginbot10">' +
+                    //'<span class="file-info show_info"><a href="#" title="' + caption + '"><i class="icon-file icon-circled icon-bglight icon"></i></a></span> '
+                     '<span><a class="download" href="' + encodedFile + '" title="Download '+ filename + '"><i class="icon-cloud-download icon-circled icon-bglight icon"></i></a></span></div>'
+                var content = '<li class="item-thumbs span1 design" data-id="' + data_id + '" data-type="'+ search_label +'">'
                             +'<div class="item" id="img-label-' + data_id + '">' + item_label + icons
                             +'<div class="show_info"><img title="'+item_label_title+'" src="' + encodedFile + '" alt="" data-file-pred="' + pred_file
                             +'" data-file-exif="' + exif_file + '" /></div></div></li>';
+
+                console.log("ICONS=>", icons)
+                console.log("CONTENT=>", content)
 
                 $('#thumbs').append(content);
 

@@ -65,8 +65,10 @@ def write_to_log(message, verbose=False):
                 log(msg)
         # else:
         #    print('file existed, appending')
-
-        f.write("{} {}".format(datetime.now().strftime("%Y-%m-%d %X"), str(message) + "\n"))
+        try:
+            f.write("{} {}".format(datetime.now().strftime("%Y-%m-%d %X"), str(message) + "\n"))
+        except:
+            pass
 
 
 # read the file and return df object

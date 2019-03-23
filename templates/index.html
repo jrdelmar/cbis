@@ -81,7 +81,7 @@
 
             <div class="input-append">
               <form>
-              <input class="span4 input-large typeahead" type="text" id="search-list" placeholder="search image content" required />
+              <input class="span5 input-large typeahead" type="text" id="search-list" placeholder="search image content" required /> &nbsp;
               <input class="span4 input-large" type="text" id="search-exif" placeholder="search exif data (optional)" />
 
               <button id="search-submit" class="btn btn-theme btn-large" type="button">Start</button>
@@ -118,16 +118,17 @@
     </div><!-- end of row -->
     <div class="row">
       <!-- images -->
-      <div class="span7 img-container-scrollable">
-        <section id="projects">
+      <div class="span6 img-container-scrollable">
+        <section id="projects" class="flickr_badge">
             <p class="text-center" id="loading"><img alt="" src="static/img/ajax-loader.gif" /></p>
-          <ul id="thumbs" class="grid cs-style-4 portfolio">
+          <ul id="thumbs">
               <!-- search photos here -->
           </ul>
         </section>
       </div>
+
       <!-- right side bar -->
-      <div class="span5">
+      <div class="span6">
         <aside class="right-sidebar">
           <!--table information -->
           <h5>File <span class="colored">Information</span></h5>
