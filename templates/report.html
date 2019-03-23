@@ -94,6 +94,25 @@
   }
 </style>
 
+<!--frequency count-->
+<section>
+  <div class="clearfix">&nbsp</div>
+  <div class="container">
+  <div class="row">
+    <div class="span12">
+      <h2><strong><span class="colored">Frequency</span> Count of File <span class="colored">Extensions</span></strong></h2>
+      <p>This section provides the frequency count of <strong>all files in the dataset/ directory based on file extensions</strong></p>
+      <div class="clearfix">&nbsp</div>
+      <section id="section-chart-heatmap">
+        <p class="text-center" id="searcher"><img alt="" src="static/img/ajax-loader.gif" /></p>
+        <div id="heatmap"></div>
+      </section>
+    </div>
+  </div>
+  </div>
+</section>
+
+
 <!-- section featured -->
 <section id="featured">
   <!-- opt in area for landing page -->
@@ -101,22 +120,8 @@
     <div class="container">
       <div class="row">
         <div class="span12">
-          <h2><strong><span class="colored">Summarise</span> and <span class="colored">Display</span></strong></h2>
-          <p>After the file is loaded, each image will have a prediction list and an exif information.
-            The console creates 2 files and saves them in the output folder.
-            The page loads the contents from this folder.
-          </p>
-          <pre><code>
-      root
-       |---cbis/
-             |---dataset/
-             ...
-             |---output/ -> contains the images for searching, move the images for loading and indexing here
-                     |--- e.g. sample_20190318_171951/
-                                |--- predictions_20190318_171951.csv
-                                |--- exif_20190318_171951.csv
-             |---app.py
-          </code></pre>
+          <h2><strong><span class="colored">Summarize</span> and <span class="colored">Display</span></strong></h2>
+          <p>This page loads the contents from the <strong>output/</strong> folder.</p>
 
           <!-- files -->
           <form>
@@ -167,34 +172,16 @@
   </div>
 </section>
 
-<section>
-  <div class="container">
-  <div class="row">
-    <div class="span12">
-      <h3><strong><span class="colored">Frequency</span> of <span class="colored">All</span> File <span class="colored">Extensions</span></strong></h3>
-      <p>This section provides the frequency count of <strong>all files in the dataset/ directory based on file extensions</strong></p>
-      <div class="clearfix">&nbsp</div>
-      <section id="section-chart-heatmap">
-
-        <div id="heatmap"></div>
-      </section>
-    </div>
-  </div>
-  </div>
-</section>
-
 <section id="content">
   <div class="container">
   <div class="row">
     <div class="span12">
       <h2 ><strong>Image <span class="colored">Samples</span></strong></h2>
-      <p>This section contains the random display of a small subset of the total images from the <em>chosen</em>directory.
+      <p>This section contains the random display of a small subset of the total images from the <em>chosen</em> directory.
       </p>
       <div class="clearfix">&nbsp</div>
       <ul id="thumbs-sample" class="flickr_badge">
         <!-- search photos here -->
-
-
       </ul>
     </div>
   </div>

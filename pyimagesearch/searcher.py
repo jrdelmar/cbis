@@ -236,9 +236,9 @@ def validate_search_items(search_list):
 def search_exif_from_list(exif_file, search_str, _image_path_list, _image_list):
     df = parse(exif_file)
 
-    _search = search_str.replace(",", "|")
+    _search = search_str.replace(",", "|").replace("-", ":")
     # concatenate into a new column and search from there
-    df['SearchMe'] = df['Make'] + ' ' + df['Model'] + df['Software'] + df['DateTime'].replace(":","-")
+    df['SearchMe'] = df['Make'] + ' ' + df['Model'] + df['Software'] + df['DateTime']
     df_exif = df[df['SearchMe'].str.contains(_search, case=False, na=False)]['FileName']  # do not include nan values
     # get the filenames
     _image_path_list = df_exif[df_exif.isin(_image_path_list)]

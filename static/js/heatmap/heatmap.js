@@ -9,7 +9,6 @@ https://bl.ocks.org/Bl3f/cdb5ad854b376765fa99
 */
 function v3heatmap(rawData, selector) {
     var itemSize = 22, cellSize = itemSize - 1
-
     var width = 940, height = 300;
 
     var margin = {top: 50, right: 0, bottom: 0, left: 110},

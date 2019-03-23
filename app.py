@@ -136,10 +136,10 @@ def display():
             #change to relative directory when returning to screen
             map_path = os.path.join(MAPS_RELATIVE_FOLDER, folder, fname + '.png')
 
-        # print("map_path=",map_path)
+        #print("map_path=",map_path)
         results = {"predictions": predictions,
                    "exif_info": exif_info,
-                   "map_path": map_path ,
+                   "map_path": map_path,
                    "gps_coordinates": [lat, lon]}
 
         return jsonify(results)
@@ -224,13 +224,7 @@ def search():
         # return list of images and label predictions first
         results = {"results": image_list_new, "result_list": result_list}
         return jsonify(results)
-        # return jsonify({"sorry": "Sorry, no results! Please try again."}), 500
-        # return jsonify({"results": request.form.get('img')})
 
-
-# @app.route("/report_data1")
-# def report_data1():
-#    return jsonify(get_report_data())
 
 # get the list of imagenet classes
 @app.route("/imagenet", methods=['GET'])

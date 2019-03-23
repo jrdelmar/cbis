@@ -140,7 +140,6 @@ $(function() {
 
     });
 
-    //TODO: disable/enable the button if at least one checkbox is checked
     $("#search-submit").click(function () {
         var parse_me = {}
         $('#results tr').filter(':has(:checkbox:checked)').each(function () {
@@ -154,20 +153,16 @@ $(function() {
         });
 
         if (isEmpty(parse_me)) {
-            //alert("TODO: Error-handling!")
             $("#parse-error").html("Nothing to parse. Tick at least one of the checkboxes above.");
         } else {
             $("#parse-error").html("");
-            //delete previous results
-            $('.item-thumbs').remove();
+            $('.item-thumbs').remove(); //delete previous results
 
-            //TODO: make sure this is not empty
             var search_str = $("#search-list").val();
             var search_exif = $("#search-exif").val();
 
             if(isEmpty(search_str)){
-                //alert("TODO: Error-handling!")
-                $("#search-error").html("You get what you give to the universe. There is nothing to search, so returning nothing.");
+                $("#search-error").html("You get what you give to the universe. There is nothing to search, so returning nothing. Try again?");
             } else {
                 $loading.show();
                 var data = JSON.stringify({files: parse_me, search_list: search_str, search_exif: search_exif});
