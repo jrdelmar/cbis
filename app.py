@@ -133,10 +133,13 @@ def display():
                 # generate map
                 create_map(img_src, map_path, lat, lon)
 
+            #change to relative directory when returning to screen
+            map_path = os.path.join(MAPS_RELATIVE_FOLDER, folder, fname + '.png')
+
         # print("map_path=",map_path)
         results = {"predictions": predictions,
                    "exif_info": exif_info,
-                   "map_path": os.path.join(MAPS_RELATIVE_FOLDER, folder, fname + '.png'),
+                   "map_path": map_path ,
                    "gps_coordinates": [lat, lon]}
 
         return jsonify(results)
