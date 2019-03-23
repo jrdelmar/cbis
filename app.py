@@ -11,7 +11,7 @@ from flask import request, jsonify, send_from_directory
 from pyimagesearch.utils import get_filename_from_path, clean_filename
 from pyimagesearch.searcher import Searcher, validate_search_items, search_exif_from_list
 from pyimagesearch.map import create_map
-from pyimagesearch.utils import log, parse
+from pyimagesearch.utils import log, parse, get_foldername_from_path
 from pyimagesearch.report import parse_for_report_graph, get_random_images
 from pyimagesearch.report import get_random_from_list
 from pyimagesearch.heatmap import parse_dir
@@ -121,7 +121,12 @@ def display():
             fname = get_filename_from_path(exif_file).split(".")[0]
             fname = fname + "_" + get_filename_from_path(img_src).split(".")[0]
 
-            map_path = os.path.join(MAPS_FOLDER, fname + '.png')
+            folder = get_foldername_from_path(pred_file)
+
+            map_path = os.path.join(MAPS_FOLDER, folder, fname + '.png')
+            # if the folder doesnt exist, create the folder
+            if not os.path.exists(os.path.join(MAPS_FOLDER, folder)):
+                os.makedirs(os.path.join(MAPS_FOLDER, folder))
 
             # create a map only when the file doesnt exist
             if not (os.path.isfile(map_path)):
@@ -131,7 +136,7 @@ def display():
         # print("map_path=",map_path)
         results = {"predictions": predictions,
                    "exif_info": exif_info,
-                   "map_path": map_path,
+                   "map_path": os.path.join(MAPS_RELATIVE_FOLDER, folder, fname + '.png'),
                    "gps_coordinates": [lat, lon]}
 
         return jsonify(results)

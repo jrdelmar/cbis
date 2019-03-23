@@ -55,7 +55,7 @@
           <form>
           <table class="table table-hover" id="results-table">
             <thead>
-            <tr><th>#</th>
+            <tr><th><input type="checkbox" id="toggle-all"/></th>
               <th>Location/Folder</th>
               <th>Prediction File</th>
               <th>Exif File</th>
@@ -107,13 +107,13 @@
           <li class="gun"><a href="#" title="">guns (21)</a></li>
           <li class="church"><a href="#" title="">church (19)</a></li>-->
         </ul>
-          <div class="clearfix"></div>
+          <!--<div class="clearfix"></div>
           <div class="btn-group">
               <button class="btn btn-inverse size-change" data-id="30%">smallest</button>
               <button class="btn btn-primary size-change" data-id="50%">smaller</button>
               <button class="btn btn-success size-change" data-id="75%">small</button>
               <button class="btn btn-theme size-change" data-id="100%">default</button>
-          </div>
+          </div>-->
           <div class="clearfix marginbot20"></div>
     </div><!-- end of row -->
     <div class="row">
@@ -121,7 +121,7 @@
       <div class="span6 img-container-scrollable">
         <section id="projects" class="flickr_badge">
             <p class="text-center" id="loading"><img alt="" src="static/img/ajax-loader.gif" /></p>
-          <ul id="thumbs">
+          <ul id="thumbs" class="portfolio">
               <!-- search photos here -->
           </ul>
         </section>
@@ -134,7 +134,7 @@
           <h5>File <span class="colored">Information</span></h5>
 
           <span>
-            File: <span id="file-info-label">~</span>
+              <em>Output Files:</em> <span id="file-info-folder">~</span><br \><em>FileName:</em> <span id="file-info-label">~</span>
             <table id="file-info-table" class="table table-hover table-striped table-bordered nowrap">
             <thead><tr><th> # </th>
               <th>Label (Prediction) </th>

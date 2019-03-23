@@ -10,6 +10,7 @@ INDEX_PATH = os.getcwd()
 OUTPUT_FOLDER = os.path.join(INDEX_PATH, cfg['folders']['output'])
 DATASET_FOLDER = os.path.join(INDEX_PATH, cfg['folders']['dataset'])
 MAPS_FOLDER = os.path.join(INDEX_PATH, cfg['folders']['maps'])
+MAPS_RELATIVE_FOLDER = cfg['folders']['maps']
 ALLOWED_FILENAMES = cfg['files']['allowed_filenames']
 
 IMAGENET_GUNS = cfg['imagenet']['guns']

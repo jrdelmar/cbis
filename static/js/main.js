@@ -95,6 +95,7 @@ $(function() {
         var img_src = decodeURIComponent ($(this).find('img').attr("src"));
         var pred_file = $(this).find('img').attr("data-file-pred");
         var exif_file = $(this).find('img').attr("data-file-exif");
+        $("#file-info-folder").html(pred_file + "\n" + exif_file);
 
         //remove other active classes
         $("#thumbs").find('img').removeClass('img-active');
@@ -376,13 +377,14 @@ function search(data){
             //console.log('result.results=',result.results);
             var data = result.results;
 
-            //console.log('data=',data)
+            console.log('data=',data)
             if (0 === data.length) {
                 //TODO: Error handling
-                alert("No results found");
-            }
+                //alert("No results found");
+                $("#search-error").html("Sorry, no results found. Try with some other words.");
+            } else {
 
-            var result_list = result.result_list;
+                var result_list = result.result_list;
             generate_filter_list(data);
             /**
              * <li class="all active"><a href="#">All (40)</a></li>
@@ -458,6 +460,10 @@ function search(data){
             //visualise only after its done, move to complete function
             //visualize_results(dataset_search);
             scrollToDiv($("#search-results-title"));
+
+            } //else-images-found
+
+
         },
         // handle error
         error: function (error) {
@@ -496,7 +502,7 @@ function generate_filter_list(data){
 
     });
 
-    console.log(search_label)
+    //console.log(search_label)
     /**
      * <li class="all active"><a href="#">All (40)</a></li>
      <li class="gun"><a href="#" title="">Guns (21)</a></li>
@@ -514,6 +520,7 @@ function generate_filter_list(data){
 
 //Call the function again because the elements were dynamically loaded
 function call_thumbs_animation(){
+
     if (jQuery().quicksand) {
         // Clone applications to get a second collection
         var $data = $(".portfolio").clone();
@@ -528,6 +535,7 @@ function call_thumbs_animation(){
             } else {
                 var $filteredData = $data.find('.item-thumbs[data-type=' + filterClass + ']');
             }
+            //console.log($filteredData)
             //BUG-FIX:  manually filter by checking duplicate ids because of dynamic content
             var arr = [];
             var deleteArr = [];
@@ -545,6 +553,7 @@ function call_thumbs_animation(){
                 $filteredData.splice(item,1)
             });
             //BUG-FIX -- end --
+            //console.log($filteredData)
 
             $(".portfolio").quicksand($filteredData, {
                 duration: 600,
