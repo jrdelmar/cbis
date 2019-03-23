@@ -32,8 +32,6 @@ $(function() {
     const TOP_K_PREDICTIONS_SIDEBAR = 5; //top-5 results only, dont clutter my sidebar
 
     // check the files from the output folder
-    // TODO: add a proper loading icon
-
     // ajax request for loading the folders in output direction
     $.ajax({
         type: "GET",

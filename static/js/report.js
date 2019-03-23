@@ -1,9 +1,16 @@
 // ----- report js ----- //
 $(function() {
+
+    //load the heatmap
+    $("#heatmap").html(""); //clear content first
+    createHeatMap();
+
+
+
     //on-load do not display
     $("#section-chart-vis").hide();
     $("#section-chart-search").hide();
-    $("#section-chart-heatmap").hide();
+    //$("#section-chart-heatmap").hide();
 
 
     $('#graph-submit').click(function() {
@@ -41,17 +48,21 @@ $(function() {
 
             scrollToDiv($("#vis-title"));
             $("#vis").html(""); //clear content first
-            $("#heatmap").html(""); //clear content first
+
 
             createBubbleChartFromUrl(params, '#vis');
 
 
             $("#section-chart-vis").show();
-            $("#section-chart-heatmap").show();
+
 
 
         }
     });
+
+
+
+
 
 }); //--end of function
 
@@ -78,7 +89,7 @@ function createBubbleChartFromUrl(params,selector){
         $('.item-thumbs').remove(); //remove old images
 
         //display after render
-        createHeatMap();
+        //createHeatMap(); //=> create onload
 
         //display after finishing
         display_random_images(data.random_images);
@@ -100,11 +111,9 @@ function createBubbleChartFromData(data,selector){
 }
 
 function createHeatMap(){
-
-    d3.json("/heatmap", function(data) {
-        //console.log(data.children.length)
+    d3v3.json("/heatmap", function(data) {
         v3heatmap(  data.children, '#heatmap');
-
+        $("#searcher").hide();
     });
 }
 
