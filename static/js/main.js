@@ -1,10 +1,11 @@
 // ----- custom js ----- //
 $(function() {
+
+
     // hide initial
     $loading = $("#loading") ;
     $error = $("#error");
     $searching = $(".searching");
-
 
     $loading.show();
     $error.hide();
@@ -16,6 +17,15 @@ $(function() {
 
     $('#imagenet-list-wrapper').hide();
     $('#find-imagenet-rollup').hide();
+
+    //checkbox-all
+    $('#toggle-all').click(function() {
+        if(this.checked){
+            $('#results-table').find("input[type='checkbox']").prop('checked', true);
+        }else {
+            $('#results-table').find("input[type='checkbox']").prop('checked', false);
+        }
+    });
 
 
     //config - some fixed values
@@ -158,7 +168,7 @@ $(function() {
 
             if(isEmpty(search_str)){
                 //alert("TODO: Error-handling!")
-                $("#search-error").html("You get what you give. There is nothing to parse, so returning nothing.");
+                $("#search-error").html("You get what you give to the universe. There is nothing to search, so returning nothing.");
             } else {
                 $loading.show();
                 var data = JSON.stringify({files: parse_me, search_list: search_str, search_exif: search_exif});
@@ -425,9 +435,6 @@ function search(data){
                             +'<div class="item" id="img-label-' + data_id + '">' + item_label + icons
                             +'<div class="show_info"><img title="'+item_label_title+'" src="' + encodedFile + '" alt="" data-file-pred="' + pred_file
                             +'" data-file-exif="' + exif_file + '" /></div></div></li>';
-
-                console.log("ICONS=>", icons)
-                console.log("CONTENT=>", content)
 
                 $('#thumbs').append(content);
 
