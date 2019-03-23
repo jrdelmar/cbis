@@ -67,17 +67,6 @@ $(function() {
 
     $loading.hide();
 
-    // //DEBUG: -----------------------------
-    // var search_str = "gun,church, scuba diver, water";
-    // var parse_me = {
-    //     'WEAPON-DB9_20190226_180745': {
-    //         'predictions': ["predictions_20190223_234941.csv"],
-    //         'exif': ["exif_20190223_234941.csv"]
-    //     }
-    // }
-    // var data = JSON.stringify({files: parse_me, search_list: search_str, search_exif:search_exif})
-    // //search(data);
-
     //dynamic links
     //$(".item").live("click", function(e) {
     $(".show_info").live("click", function(e) {
@@ -156,6 +145,8 @@ $(function() {
             $("#parse-error").html("Nothing to parse. Tick at least one of the checkboxes above.");
         } else {
             $("#parse-error").html("");
+            $("#search-error").html("");
+
             $('.item-thumbs').remove(); //delete previous results
 
             var search_str = $("#search-list").val();
