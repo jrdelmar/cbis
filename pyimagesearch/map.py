@@ -4,6 +4,8 @@ Created on Sun Mar  3 02:25:37 2019
 @author: user
 Description:
 """
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes

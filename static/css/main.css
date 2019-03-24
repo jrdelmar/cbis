@@ -22,3 +22,11 @@
     max-height: 650px;
     overflow-y: scroll;
 }
+
+#parse-error {
+    font-weight: bolder;
+}
+
+#search-error {
+    font-weight: bolder;
+}

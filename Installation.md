@@ -519,7 +519,7 @@ Fast-forward
  create mode 100644 static/README.txt
 (base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$
 ```
-
+If there are conflicts when updating the local directory from the repository, delete the offending files from the local machine and re-run `git pull` command.
 ## Run the Flask Web Application
 Run the flask application: `python3 app.py ` from `home/cbis/app/cbis`
 ```
@@ -548,7 +548,10 @@ Run the flask application: `python3 app.py ` from `home/cbis/app/cbis`
 ### Step 1: Load and Index the image directories from the console.
 - The images for prediction should reside in `APPLICATION_PATH/cbis/dataset`
 - This allows the application to load and identify the top-20 predictions for each and every image in the directory. The filename and path will be displayed. 
-- Run the prediction from the console
+- For evaluation, the sample image dataset are in <a target="_blank" href="https://github.com/jrdelmar/cbis-dataset">github</a>. 
+    Clone `git clone https://github.com/jrdelmar/cbis-dataset.git` or download from github repository. 
+- Save the dataset folders in `APPLICATION_PATH/cbis/dataset` folder.
+- Run the prediction from the console `cd APPLICATION_PATH/cbis/`
 ```python prediction.py --image dataset/FOLDER -v ```
 - After the prediction completes (depending on the number of files,it might take a while), the file will be saved in the output directory `APPLICATION_PATH/cbis/output`. 
 

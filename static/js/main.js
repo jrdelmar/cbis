@@ -142,7 +142,7 @@ $(function() {
         });
 
         if (isEmpty(parse_me)) {
-            $("#parse-error").html("Nothing to parse. Tick at least one of the checkboxes above.");
+            $("#parse-error").html("You forgot to choose a directory to parse. Tick at least one of the checkboxes above before you can start.");
         } else {
             $("#parse-error").html("");
             $("#search-error").html("");
@@ -153,7 +153,7 @@ $(function() {
             var search_exif = $("#search-exif").val();
 
             if(isEmpty(search_str)){
-                $("#search-error").html("You get what you give to the universe. There is nothing to search, so returning nothing. Try again?");
+                $("#search-error").html("Hmmm. There is nothing to search, so returning nothing. Try again?");
             } else {
                 $loading.show();
                 var data = JSON.stringify({files: parse_me, search_list: search_str, search_exif: search_exif});
@@ -361,10 +361,7 @@ function search(data){
             //console.log('result.results=',result.results);
             var data = result.results;
 
-            console.log('data=',data)
             if (0 === data.length) {
-                //TODO: Error handling
-                //alert("No results found");
                 $("#search-error").html("Sorry, no results found. Try with some other words.");
             } else {
 
