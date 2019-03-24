@@ -9,9 +9,9 @@ Since 2016, classifiers that won ImageNet competitions have already exceeded the
 Discussions with forensic analysts in a renowned digital forensics firm revealed that although analysing photos is such an integral part of forensic analysis that almost all digital forensic toolkits have some form of photo analysis functionality, there is no automated way to categorise the images using non-proprietary tools. They lamented the lack of open-source tools that could (1) automate categorisation, as well as (2) provide information that will be relevant in a forensic analysis. 
 
 This tool aims to:
-Perform  a machine-learning based categorisation of images using pre-trained networks from Imagenet
-Provide relevant information such as EXIF
-Usable in a Digital Forensic Investigation
+* Perform  a machine-learning based categorisation of images using pre-trained networks from Imagenet
+* Provide relevant information such as EXIF
+* Usable in a Digital Forensic Investigation
 
 
 ---
