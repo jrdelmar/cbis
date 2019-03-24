@@ -2,9 +2,9 @@ import os
 import yaml
 
 with open("config.yml", 'r') as ymlfile:
-    cfg = yaml.load(ymlfile)
+    cfg = yaml.safe_load(ymlfile)
 
-
+print(cfg['folders']['output'])
 INDEX_PATH = os.getcwd()
 
 OUTPUT_FOLDER = os.path.join(INDEX_PATH, cfg['folders']['output'])

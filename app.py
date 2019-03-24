@@ -84,10 +84,10 @@ def load():
         return jsonify(results)
 
 
-@app.route('/display', methods=['POST'])
+@app.route('/display', methods=[ 'POST'])
 def display():
     # retrieves information per image
-    if request.method == "POST":
+    if request.method == 'POST':
 
         verbose = True
         # threshold = None
