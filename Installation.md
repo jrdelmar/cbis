@@ -14,10 +14,14 @@
 
 # Installation Notes
 
+The tool can be installed by:
+* Installing yourself (by following the instructions outlined in this document)
+* Using the Virtualbox pre-installed image. A Virtualbox ova file is provided as a semblance of a ready-to-use application. 
+Skip the installation steps if you prefer the Ubuntu Vbox file.
+
 ## Pre-requisites
 
 The user is expected to know how to install and troubleshoot python-related installations. 
-A Virtualbox file is provided a semblance of a ready-to-use application. Skip the installation steps if you prefer the Ubuntu Vbox file.
 
 * [python 3](https://www.python.org/downloads/)
 * [anaconda](https://www.anaconda.com/distribution/#linux)

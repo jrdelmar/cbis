@@ -66,18 +66,18 @@
             <p class="text-center searching"><img alt="" src="static/img/ajax-loader.gif" /></p>
           </div>
       </div>
-        <p id="parse-error" class="text-error"></p>
+
       <div class="row">
         <div class="span12">
           <h2><strong>(3) Search for <span class="colored">Image Content</span> (Guns or other objects)</strong></h2>
           <p>Each search item should be delimited by a comma. Image content + Exif Data filters the results (AND/INTERSECTION). Comma-delimited values combine results (OR/UNION).
           </p>
-            <p> (Required) To search for image content: E.g. <code>gun,water,church </code>&nbsp;&nbsp;&nbsp;<a href="#" class="find-imagenet">
-                <i class="icon-list" title="Display list of available labels"></i></a>&nbsp;&nbsp;&nbsp;<em>For autocomplete to work, do not add a trailing space after the comma delimiter.</em></p>
+            <p> <span class="text-error">(Required)</span> To search for image content: E.g. <code>gun,water,church </code>&nbsp;&nbsp;&nbsp;<a href="#" class="find-imagenet">
+                <i class="icon-list" title="Display list of available labels"></i></a>&nbsp;&nbsp;&nbsp;<span class="text-warning"><em>For autocomplete to work, do not add a trailing space after the comma delimiter.</em></span></p>
             <div id="imagenet-list-wrapper"><pre id="imagenet-list"></pre>&nbsp;&nbsp;&nbsp;<a href="#" id="find-imagenet-rollup" ><i class="icon-chevron-up" title="Hide"></i></a></div>
 
             <p> (Optional) To search from EXIF Maker, Model, Software or DateTime (YYYY-MM-DD): E.g. <code>iphone,gopro,photoshop,2018-01-24</code></a></p>
-            <p>The example search query will return images tagged with either <em>"gun", "water" or "church"</em> labels <strong>AND</strong> containing exif information with string <em>"iphone" ,"gopro", and "photoshop" tags</em>, or with dates <em>2018-01-24</em>.</p>
+            <p class="text-warning">The example search query above will return images tagged with either <em>"gun", "water" or "church" </em> labels <strong>AND</strong> containing exif information with string <em>"iphone" ,"gopro", and "photoshop" tags</em>, or with dates <em>2018-01-24</em>.</p>
 
             <div class="input-append">
               <form>
@@ -88,6 +88,7 @@
               </form>
             </div>
             <p id="search-error" class="text-error"></p>
+            <p id="parse-error" class="text-error"></p>
             <p class="text-center searching"><img alt="" src="static/img/ajax-loader.gif" /></p>
         </div>
       </div>

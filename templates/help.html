@@ -79,17 +79,23 @@ div#notebook {
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+    <p>The tool can be installed by:</p>
+    <ul>
+        <li>Installing yourself (by following the instructions outlined in this document)</li>
+        <li>Using the Virtualbox pre-installed image. A Virtualbox ova file is provided as a semblance of a ready-to-use
+            application.Skip the installation steps if you prefer the Ubuntu Vbox file. </li>
+    </ul>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Pre-requisites">Pre-requisites<a class="anchor-link" href="#Pre-requisites"></a></h2><p>The user is expected to know how to install and troubleshoot python-related installations.
-A Virtualbox file is provided a semblance of a ready-to-use application. Skip the installation steps if you prefer the Ubuntu Vbox file.</p>
+<h2 id="Pre-requisites">Pre-requisites<a class="anchor-link" href="#Pre-requisites"></a></h2>
+    <p>The user is expected to know how to install and troubleshoot python-related installations.</p>
 <ul>
 <li><a href="https://www.python.org/downloads/">python 3</a></li>
 <li><a href="https://www.anaconda.com/distribution/#linux">anaconda</a></li>
 <li>source code in <a href="https://github.com/jrdelmar/cbis.git">github</a>:  <code>git clone https://github.com/jrdelmar/cbis.git</code></li>
 <li>Ubuntu Virtualbox - The Ubuntu pre-built .ova file can be downloaded from one-drive. The file is too large to be uploaded into github-lfts.
-    Download the ova file <a target="_blank" href="http://bit.ly/2HFXnkv"><em>here</em></a> and skip to <a href="/howtouse#Pre-installed-Ubuntu-Virtualbox"><em>this part of the installation</em></a></li>
+    Download the ova file <a target="_blank" href="http://bit.ly/2HFXnkv"><em>here</em></a> and skip to <a href="/help#Pre-installed-Ubuntu-Virtualbox"><em>this part of the installation</em></a></li>
 <li><a href="https://virtualenv.pypa.io/en/latest/">virtual environment</a> - Optional</li>
 </ul>
 
@@ -255,7 +261,6 @@ From the terminal, install each dependencies using conda install command.
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Run-the-Code">Run the Code<a class="anchor-link" href="#Run-the-Code"></a></h2><p>Test with running the python code: (no trailing <code>/</code> for the paths)</p>
 <p>From the cbis/ directory:</p>
-<p><code>python3 predict.py -i dataset/sample -v</code></p>
 <p><strong>Predict</strong></p>
 <p><code>python3 predict.py -i dataset/sample -v</code></p>
 
@@ -631,7 +636,7 @@ python3 app.py</code></pre>
 <h1 id="Pre-installed-Ubuntu-Virtualbox">Pre-installed Ubuntu Virtualbox<a class="anchor-link" href="#Pre-installed-Ubuntu-Virtualbox"></a></h1><p><em>This section discusses how to run the ready-to-use version using virtualbox's ova file</em></p>
 <p>To skip the installation process, this virtualbox image contains pre-installed dependencies needed to run the application.</p>
 <h2 id="Instructions">Instructions<a class="anchor-link" href="#Instructions"></a></h2><ul>
-<li>Download the .ova file from the download link (see <a target="_blank" href="/howtouse#Pre-requisites">Pre-requisites</a>) </li>
+<li>Download the .ova file from the download link (see <a target="_blank" href="/help#Pre-requisites">Pre-requisites</a>) </li>
 <li>Import the .ova file (File -&gt; Import Appliance)</li>
 <li>Run/Start the Virtual Machine</li>
 </ul>
@@ -690,12 +695,14 @@ Fast-forward
  requirements.venv.txt   |  94 ++++++++--
  static/README.txt       |   4 +
  static/js/main.js       |   8 +-
- templates/howtouse.html | 554 ++++++++++++++++++++++++++++++++++++++--------------------
+ templates/help.html | 554 ++++++++++++++++++++++++++++++++++++++--------------------
  templates/index.html    |   8 +-
  templates/report.html   |   6 +-
  6 files changed, 457 insertions(+), 217 deletions(-)
  create mode 100644 static/README.txt
 (base) (cbis) cbis@cbis-VirtualBox:~/app/cbis$</code></pre>
+ <p>If there are conflicts when updating the local directory from the repository, delete the offending files from the local machine and re-run <code>git pull</code> command.</p>
+
 <h2 id="Run-the-Flask-Web-Application">Run the Flask Web Application<a class="anchor-link" href="#Run-the-Flask-Web-Application"></a></h2><p>Run the flask application: <code>python3 app.py</code> from <code>home/cbis/app/cbis</code></p>
 
 <pre><code>(base) cbis@cbis-VirtualBox:~$ cd ~/app/cbis
@@ -720,13 +727,17 @@ Fast-forward
 <hr>
 <h2 id="Instructions:">Instructions:<a class="anchor-link" href="#Instructions:"></a></h2><h3 id="Step-1:-Load-and-Index-the-image-directories-from-the-console.">Step 1: Load and Index the image directories from the console.<a class="anchor-link" href="#Step-1:-Load-and-Index-the-image-directories-from-the-console."></a></h3><ul>
 <li>The images for prediction should reside in <code>APPLICATION_PATH/cbis/dataset</code></li>
-<li>This allows the application to load and identify the top-20 predictions for each and every image in the directory. The filename and path will be displayed. </li>
+<li>This allows the application to load and identify the top-20 predictions for each and every image in the directory.</li>
+<li>For evaluation, the sample image dataset are in <a target="_blank" href="https://github.com/jrdelmar/cbis-dataset">github</a>.
+    Clone <code>git clone https://github.com/jrdelmar/cbis-dataset.git</code> or download from github repository.</li>
+<li> Save the dataset folders in <code>APPLICATION_PATH/cbis/dataset</code> folder.</li>
 <li>Run the prediction from the console
-<code>python prediction.py --image dataset/FOLDER -v</code></li>
+<code>cd APPLICATION_PATH/cbis/</code>
+<code>python3 prediction.py --image dataset/FOLDER -v</code></li>
 <li>After the prediction completes (depending on the number of files,it might take a while), the file will be saved in the output directory <code>APPLICATION_PATH/cbis/output</code>. </li>
 </ul>
 <h3 id="Step-2:-Open-the-web-application-and-parse/visualise-results">Step 2: Open the web application and parse/visualise results<a class="anchor-link" href="#Step-2:-Open-the-web-application-and-parse/visualise-results"></a></h3><ul>
-<li>Run the flask <code>python app.py</code></li>
+<li>Run the flask <code>python3 app.py</code></li>
 <li>From the browser, open: <code>localhost:5000</code></li>
 <li>The files are taken from <code>APPLICATION_PATH/cbis/output</code>. Choose any of the files and parse the results. </li>
 <li>Start searching! </li>
