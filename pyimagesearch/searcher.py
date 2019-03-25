@@ -238,15 +238,19 @@ def search_exif_from_list(exif_file, search_str, _image_path_list, _image_list):
 
     _search = search_str.replace(",", "|").replace("-", ":")
     # concatenate into a new column and search from there
-    df['SearchMe'] = df['Make'] + ' ' + df['Model'] + df['Software'] + df['DateTime']
-    df_exif = df[df['SearchMe'].str.contains(_search, case=False, na=False)]['FileName']  # do not include nan values
-    # get the filenames
-    _image_path_list = df_exif[df_exif.isin(_image_path_list)]
+    try:
+        df['SearchMe'] = df['Make'] + ' ' + df['Model'] + df['Software'] + df['DateTime']
+        df_exif = df[df['SearchMe'].str.contains(_search, case=False, na=False)]['FileName']  # do not include nan values
+        # get the filenames
+        _image_path_list = df_exif[df_exif.isin(_image_path_list)]
+        new_list = []
+        for img_list in _image_list:
+            # clean up to make sure strings can be compared, some dashes issue, better to just remove
+            if img_list[0].replace("\\", "") in list(map(lambda x: x.replace("\\", ""), df_exif)):
+                new_list.append(img_list)
 
-    new_list = []
-    for img_list in _image_list:
-        # clean up to make sure strings can be compared, some dashes issue, better to just remove
-        if img_list[0].replace("\\", "") in list(map(lambda x: x.replace("\\", ""), df_exif)):
-            new_list.append(img_list)
+    except:
+        # df columns not found
+        new_list = _image_list
 
     return _image_path_list, new_list

@@ -12,7 +12,6 @@ import pandas as pd
 
 # parse the dataset directory folder
 # list of extensions supported
-# TODO:
 EXTENSIONS_SUPPORTED = ['CRDOWNLOAD', 'ICS', 'MSI', 'PART', 'TORRENT', 'BAK', 'TMP', 'C', 'CLASS', 'CPP', 'CS', 'DTD',
                         'FLA', 'H', 'JAVA', 'LUA', 'M', 'PL', 'PY', 'SH', 'SLN', 'SWIFT', 'VB', 'VCXPROJ', 'XCODEPROJ',
                         'BIN', 'CUE', 'DMG', 'ISO', 'MDF', 'TOAST', 'VCD', '7Z', 'CBR', 'DEB', 'GZ', 'PKG', 'RAR',
@@ -29,7 +28,8 @@ EXTENSIONS_SUPPORTED = ['CRDOWNLOAD', 'ICS', 'MSI', 'PART', 'TORRENT', 'BAK', 'T
                         'TAX2016', 'TAX2018', 'VCF', 'XML', 'DOC', 'DOCX', 'LOG', 'MSG', 'ODT', 'PAGES', 'RTF', 'TEX',
                         'TXT', 'WPD', 'WPS']
 
-
+RASTER = ['BMP', 'DDS', 'GIF', 'HEIC', 'JPG', 'JPEG', 'PNG', 'PSD', 'PSPIMAGE', 'TGA', 'THM',
+                        'TIF', 'TIFF', 'YUV', ]
 def parse_dir():
     DATASET_DIR = "dataset"
     OUTPUT_DIR = "output"
@@ -49,14 +49,21 @@ def parse_dir():
                     filename, file_extension = os.path.splitext(str(path))
                     ext = file_extension.replace(".", "").lower()
                     if ext == '':
-                        ext = 'None'  # some files might not have extensions like some carved images
+                        ext = 'NONE'  # some files might not have extensions like some carved images
                     elif ext.upper() not in EXTENSIONS_SUPPORTED:
-                        ext = 'Others'
-                    if ext in arr_ext:
+                        ext = 'OTHERS'
+
+                    if ext.lower() in arr_ext:
                         # if the extension already exists in the list, then add
-                        arr_ext[ext] = arr_ext[ext] + 1
+                        arr_ext[ext.lower()] = arr_ext[ext.lower()] + 1
                     else:  # create
-                        arr_ext[ext] = 1
+                        arr_ext[ext.lower()] = 1
+
+            # add more columns to make the graph look nicer if at least one has less than x keys
+            if len(arr_ext.keys()) < 5:
+                for _ext in RASTER:
+                    if _ext.lower() not in arr_ext:
+                        arr_ext[_ext.lower()] = None
 
             arr[get_filename_from_path(image_path)] = arr_ext
 
