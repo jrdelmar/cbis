@@ -46,8 +46,8 @@ def parse_for_report(df, verbose, top_k=20, threshold=None, ascending=False):
     results = results.sort_values(['count'], ascending=ascending)
 
     if verbose:
-        log("[INFO] Top-20 labels sorted in descending order (highest first)")
-        log(results.head(20))
+        log("[INFO] Top-20 labels sorted in descending order (highest first)", verbose)
+        log(results.head(20), verbose)
 
     return results
 

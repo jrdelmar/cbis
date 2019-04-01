@@ -7,11 +7,10 @@ Description:
 """
 
 import argparse
-import os
 
-from pyimagesearch.utils import log, parse, save
+from pyimagesearch.utils import log, parse, save, get_filenames_in_csv, get_timestamp
 from pyimagesearch.report import parse_for_report
-
+from pyimagesearch.config import *
 
 def report():
     # --- argument list --- #
@@ -60,12 +59,11 @@ def report():
     results = parse_for_report(df, verbose, top_k, threshold)
 
     # save the file 
-    # index_path = os.path.abspath(__file__)
-    # save in the same folder as the prediction file 
-    index_path = os.path.dirname(os.path.abspath(pred_file))
-    # print("prediction_file=",index_path)
+    # save in the same folder as the prediction file
+    output_path = os.path.dirname(os.path.abspath(pred_file))
+    filenames = get_filenames_in_csv(output_path, ["summary_predictions"], get_timestamp())
 
-    save([results], index_path, ["summary_predictions"])
+    save([results], output_path, filenames)
 
     log("[INFO] Total labels:{}".format(len(results['label'])), always_verbose)
     log("[INFO] Completed Report ", always_verbose)
