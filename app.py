@@ -200,6 +200,7 @@ def search():
         # change the directory to display on screen
         # sort by probability
         image_list_new = []
+        master_list = []
         if len(image_list) > 0:
 
             for img in image_list:
@@ -211,10 +212,14 @@ def search():
                 icon_size = ""
                 if w * h > 30000:
                     icon_size = "-2x"
-                # 0: filename, 1:search label, 2:search probability, 3:icon size
-                # 4:prediction file used, 5: exif file used
-                image_list_new.append([fname, img[1], img[2], img[3],
-                                       icon_size])
+
+                # make sure it is unique
+                if fname not in master_list:
+                    master_list.append(fname)
+                    # 0: filename, 1:search label, 2:search probability, 3:icon size
+                    # 4:prediction file used, 5: exif file used
+                    image_list_new.append([fname, img[1], img[2], img[3],
+                                           icon_size])
 
             # sort by highest probabilities
             image_list_new.sort(key=lambda k: (-k[2]))
