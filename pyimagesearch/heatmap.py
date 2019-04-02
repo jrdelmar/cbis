@@ -59,12 +59,7 @@ def parse_dir():
                     else:  # create
                         arr_ext[ext.lower()] = 1
 
-            # add more columns to make the graph look nicer if at least one has less than x keys
-            if len(arr_ext.keys()) < 5:
-                for _ext in RASTER:
-                    if _ext.lower() not in arr_ext:
-                        arr_ext[_ext.lower()] = None
-
+            # TODO: add more columns to make the graph look nicer if at least one has less than x keys
             arr[get_filename_from_path(image_path)] = arr_ext
 
     arr_folders = []
