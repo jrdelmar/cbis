@@ -1,5 +1,6 @@
 # cbis
 Content-based Image Search using pre-trained Keras model with Python3 and Flask
+---
 Running demo here: https://cbis.jrdelmar.dev/
 ---
 The source code can be used from the: 
