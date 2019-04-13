@@ -34,8 +34,8 @@ def test_get_files():
 def test_get_output_folder():
     folder_out = None
     img_path = "D:/APP/cbis/tests/img/"
-    folder = get_output_directory(indexPath, ts, img_path, folder_out)
-    assert folder.replace("\\", "/") == "D:/APP/cbis/tests/img/output/img_20190317_121317".replace("\\", "/")
+    folder = get_output_directory(ts, img_path, folder_out)
+    assert folder.replace("\\", "/") == "D:/APP/cbis/output/img_20190317_121317".replace("\\", "/")
 
 
 def test_get_key_max():

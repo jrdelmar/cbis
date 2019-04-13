@@ -12,7 +12,7 @@ model = 'inception'
 #test Loader class
 @pytest.fixture
 def loader():
-    return Loader( indexPath = indexPath,
+    return Loader(index_path = indexPath,
                     output = output_dir,
                     timestamp = ts,
                     verbose = verbose)

@@ -21,12 +21,13 @@ def test_show_random_images():
     #         print(row[1])
     #         img_list.append(row[1])
     #
-    # sample_size = int( len(img_list) * 0.8 )
+    # sample_size = int( len(img_list) * 0.5 )
     # if sample_size > 50:
     #     sample_size = 50
     #
     # img_list_rand = random.sample(img_list, sample_size)
     # print("PRINT=>",img_list_rand[0],img_list_rand[1])
+    # print("img_list=>", img_list)
     df = parse(pred_file)
     img_list = get_random_images(df)
-    assert len(img_list) == 3
+    assert len(img_list) == 2 ## there are 4 images in the list, returns 50% sample data, expected 2 items

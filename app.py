@@ -446,3 +446,5 @@ def search_predictions(pred_file, exif_file, search_list, search_exif, top_k, th
 # run!
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True)
+else:
+    gunicorm_app = app
