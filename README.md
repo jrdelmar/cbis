@@ -174,6 +174,11 @@ in your /home/cbis/.bashrc ? [yes|no]
 
 ### Activate
 Activate the installation and the virtual environment by running `source ~/.bashrc`.
+If `-bash: conda: command not found` error occurs, add the following lines to `~/.bashrc`:
+```
+export PATH=~/anaconda3/bin:$PATH
+```
+Run `source ~/.bashrc` again and `conda --version` to check the version.
 
 ### Load Dependencies
 Let's install the dependencies using conda install from the requirements file found in github. 
