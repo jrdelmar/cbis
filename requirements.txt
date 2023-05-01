@@ -13,7 +13,7 @@ scikit-learn==0.19.1
 scipy==1.1.0
 tensorflow==2.4.2
 matplotlib==2.2.2   
-Flask==1.0.2
+Flask==2.3.2
 Flask-Cors==3.0.9
 gunicorn==19.9.0  		
 Cartopy==0.17.0
